@@ -1,0 +1,24 @@
+{
+    "name": "lmxdawn/think-tree",
+    "type": "library",
+    "description": "Library for tp5 tree",
+    "keywords": ["tree"],
+    "homepage": "https://github.com/lmxdawn/think-tree",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Lan Ming Xiang",
+            "email": "lmxdawn@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "lmxdawn\\tree\\": "src/"
+        }
+    }
+}
