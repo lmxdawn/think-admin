@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-10 17:49:06
+Date: 2017-03-10 18:52:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -239,25 +239,6 @@ INSERT INTO `lmx_menu` VALUES ('96', '93', '分类管理', 'admin', 'Category', 
 INSERT INTO `lmx_menu` VALUES ('97', '92', '内容管理', 'admin', 'Article', 'index', '', '1', '1', '文章管理', 'fa-circle-o', '', '2', '1488691790', '1488691790', '0', '0');
 
 -- ----------------------------
--- Table structure for lmx_oauth_user
--- ----------------------------
-DROP TABLE IF EXISTS `lmx_oauth_user`;
-CREATE TABLE `lmx_oauth_user` (
-  `userid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户编号',
-  `chid` int(11) DEFAULT NULL COMMENT '渠道',
-  `subchid` int(11) DEFAULT NULL COMMENT '子渠道',
-  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
-  `nickname` varchar(255) DEFAULT NULL COMMENT '用户昵称',
-  `sex` int(11) DEFAULT NULL COMMENT '性别',
-  `birth` date DEFAULT NULL COMMENT '生日',
-  PRIMARY KEY (`userid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of lmx_oauth_user
--- ----------------------------
-
--- ----------------------------
 -- Table structure for lmx_options
 -- ----------------------------
 DROP TABLE IF EXISTS `lmx_options`;
@@ -318,6 +299,31 @@ INSERT INTO `lmx_role_user` VALUES ('3', '3');
 INSERT INTO `lmx_role_user` VALUES ('1', '5');
 INSERT INTO `lmx_role_user` VALUES ('2', '2');
 INSERT INTO `lmx_role_user` VALUES ('2', '5');
+
+-- ----------------------------
+-- Table structure for lmx_third_users
+-- ----------------------------
+DROP TABLE IF EXISTS `lmx_third_users`;
+CREATE TABLE `lmx_third_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '第三方用户编号',
+  `from` varchar(20) DEFAULT NULL COMMENT '用户来源key',
+  `name` varchar(50) DEFAULT NULL COMMENT '第三方用户昵称',
+  `head_img` varchar(255) DEFAULT NULL COMMENT '第三方头像',
+  `uid` int(11) DEFAULT NULL COMMENT '关联的本站用户id',
+  `create_time` int(11) DEFAULT NULL COMMENT '绑定时间',
+  `last_login_time` int(11) DEFAULT NULL COMMENT '最后登录时间',
+  `last_login_ip` varchar(16) DEFAULT NULL COMMENT '最后登录ip',
+  `login_times` int(6) DEFAULT NULL COMMENT '登录次数',
+  `status` tinyint(4) DEFAULT '1' COMMENT '状态',
+  `openid` varchar(50) DEFAULT NULL COMMENT '第三方用户id',
+  `chid` int(11) DEFAULT NULL COMMENT '渠道',
+  `subchid` int(11) DEFAULT NULL COMMENT '子渠道',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='第三方用户表';
+
+-- ----------------------------
+-- Records of lmx_third_users
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for lmx_users
