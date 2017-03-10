@@ -1,0 +1,150 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('index')}">数据备份</a></span>
+                    </li>
+                    <li class="active">
+                        <i class=""></i>
+                        <span>数据列表</span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+
+    <!--表格-->
+    <div class="lmx-table">
+        <table class="layui-table">
+            <colgroup>
+                <col width="300">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>备份名称</th>
+                <th>文件大小</th>
+                <th>备份时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='backups' id='vo'}
+                <tr class="name_{$vo.name}">
+                    <td>{$vo.name}</td>
+                    <td>{$vo.total_size}</td>
+                    <td>{$vo.date_str}</td>
+                    <td>
+                        <a class="layui-btn layui-btn-small setFile" href="{:Url('import',['backup' => $vo.name])}" title="恢复" data-confirm="确定恢复该备份？" data-id="1">恢复</a>
+                        <a class="layui-btn layui-btn-small layui-btn-danger setFile" href="{:Url('del_backup',['backup' => $vo.name])}" title="删除" data-confirm="确定删除该备份？" data-id="2" data-name="{$vo.name}">删除</a>
+                    </td>
+                </tr>
+
+                {volist name="vo.vols" id="v1"}
+                    <tr class="name_{$vo.name}">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;├ {$v1.file ?? ''}</td>
+                        <td>{$v1.size ?? ''}</td>
+                        <td>{$vo.date_str ?? ''}</td>
+                        <td>
+                            <a class="layui-btn layui-btn-small" href="{:Url('download',['backup' => $vo.name,'file' => $v1.file])}" title="下载">下载</a>
+                        </td>
+                    </tr>
+                {/volist}
+
+            {/volist}
+            </tbody>
+        </table>
+
+    </div>
+
+
+</section>
+
+{/block}
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['layer'], function(){
+
+        $(".setFile").click(function () {
+
+            var $this = $(this)
+                ,url = $this.attr('href')
+                ,id = $this.data('id')
+                ,confirm = $this.data('confirm')
+
+            //询问框
+            layer.confirm(confirm, {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                //确定
+                layer.closeAll();
+
+                if (!id){
+                    return false;
+                }
+                $this.css('background-color','#ccc');
+                $this.data('id','');
+                $.ajax({
+                    type : 'post',
+                    url : url,
+                    data : {},
+                    dataType : 'json',
+                    success : function (res) {
+                        //提示层
+                        setTimeout(function () {
+                            layer.msg(res.msg);
+                        },500);
+
+
+                        if (res.code == 1){
+                            if (id == 2){
+                                var name = $this.data('name');
+                                $(".name_" + name).remove();
+                            }
+                        }else {
+                            $this.css('background-color','#FF5722');
+                            $this.data('id',id);
+                        }
+                    },
+                    error : function (e) {
+                        $this.css('background-color','#FF5722');
+                        $this.data('id',id);
+                    }
+                });
+            }, function(){
+
+            });
+
+
+            return false;
+        })
+
+    });
+</script>
+
+
+{/block}
+
+
+

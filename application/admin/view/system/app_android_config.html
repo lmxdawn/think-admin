@@ -1,0 +1,112 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <!--表格-->
+    <div class="lmx-info">
+        <header class="info-header">
+            <span class="info-title">{$title}</span>
+        </header>
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">应用名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="app_android_config[app_name]" value="{$app_android_config.app_name|default=''}" required  lay-verify="required" placeholder="请输入应用" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">版本号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="app_android_config[version_code]" value="{$app_android_config.version_code|default=''}" placeholder="请输入版本号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">应用下载链接</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="app_android_config[app_url]" value="{$app_android_config.app_url|default=''}" placeholder="请输入应用更新链接" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">应用更新说明</label>
+                    <div class="layui-input-block">
+                        <textarea name="app_android_config[app_desc]" placeholder="请输入应用更新说明" class="layui-textarea">{$app_android_config.app_desc|default=''}</textarea>
+                    </div>
+                </div>
+
+                <!--是否更新-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否更新</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="app_android_config[toggle]" lay-skin="switch" {if condition="(!empty($app_android_config.toggle))"}checked{/if}>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后每次切换版本会提示用户更新</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '{:Url("upAppAndroidConfig")}',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+
+

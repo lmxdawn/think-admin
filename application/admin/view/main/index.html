@@ -1,0 +1,62 @@
+{extend name="base" /}
+
+{block name="css"}
+{__block__}
+
+<style>
+    .system{
+        margin: 10px 0 10px 25px;
+        padding: 0;
+    }
+    .system li{
+        list-style: outside none none;
+        line-height: 30px;
+    }
+    .system li em{
+        float: left;
+        font-style: normal;
+        width: 120px;
+    }
+    .system li span{
+
+    }
+</style>
+
+{/block}
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+    <fieldset class="layui-elem-field">
+        <legend>系统通知</legend>
+        <div class="system">
+            <ul>
+                <li>
+                    <em>社区</em>
+                    <span>社区</span>
+                </li>
+            </ul>
+        </div>
+    </fieldset>
+
+    <fieldset class="layui-elem-field">
+        <legend>系统信息</legend>
+        <div class="system">
+            <ul>
+                {volist name='config' id='vo'}
+                <li>
+                    <em>{$vo.name}</em>
+                    <span>{$vo.value}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </fieldset>
+
+
+
+</section>
+
+{/block}
+
+

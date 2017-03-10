@@ -1,0 +1,83 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span>后台菜单</span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span>后台菜单12</span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--搜索-->
+    <div class="lmx-search">
+        <form class="form-search" method="get" action="">
+            <div class="layui-form-item">
+                测试1：
+                <input type="text" name="test" required lay-verify="required" placeholder="请输入测试1" autocomplete="off" class="search-input layui-input">
+                测试2：
+                <input type="text" name="test" required lay-verify="required" placeholder="请输入测试2" autocomplete="off" class="search-input layui-input">
+                <button class="layui-btn" lay-submit="" lay-filter="theForm">搜索</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!--表格-->
+    <div class="lmx-table">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>昵称</th>
+                <th>加入时间</th>
+                <th>签名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>贤心</td>
+                <td>2016-11-29</td>
+                <td>人生就像是一场修行</td>
+            </tr>
+            <tr>
+                <td>贤心</td>
+                <td>2016-11-29</td>
+                <td>人生就像是一场修行</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</section>
+
+{/block}
+
+

@@ -1,0 +1,257 @@
+body {
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,微软雅黑,Tahoma,Arial,sans-serif;
+}
+blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+.lmx{
+    padding: 0;
+}
+
+.lmx-header {
+    background-color: #2c3e50;
+    border-bottom: 5px solid #009688;
+    color: #fff;
+    position: relative;
+    height: 45px;
+    z-index: 1000;
+}
+
+.lmx .lmx-left {
+    background-color: #f2f2f2;
+    border-right: 1px solid #ccc;
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    width: 199px;
+}
+
+.lmx-left .lmx-left-nav{
+}
+
+.lmx-left .lmx-left-nav .lmx-left-nav-content{
+    left: 0;
+    position: absolute;
+    right: 0;
+    background-color: #FAFAFA;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.lmx-left .lmx-left-manual {
+    position: absolute;
+    right: -14px;
+    top: 50%;
+}
+
+.lmx-left-manual .lmx-left-manual-switch {
+    display: block;
+}
+
+.lmx-left-manual-switch #close {
+    background-color: #5cb85c;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    height: 30px;
+    position: relative;
+    vertical-align: top;
+    width: 30px;
+}
+
+.lmx-left-manual-switch #close::before {
+    position: absolute;
+    right: 5.5px;
+    top: 5px;
+}
+
+
+.lmx-left-200{
+    left: 200px;
+}
+
+.lmx .lmx-content{
+    margin: 10px 0;
+    overflow: hidden;
+    text-align: left !important;
+}
+
+
+.lmx-content .lmx-body {
+    bottom: 82px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: auto;
+    z-index: 998;
+}
+
+.lmx-body .lmx-breadcrumbs{
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #e5e5e5;
+    display: block;
+    line-height: 36px;
+    min-height: 38px;
+    padding: 0 12px 0 0;
+    position: relative;
+}
+
+.lmx-breadcrumbs .lmx-nav{
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+
+.lmx-breadcrumbs .lmx-task-changebt{
+    background: #ecf0f1 none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    float: left;
+    font-size: 18px;
+    height: 38px;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.lmx-breadcrumbs .lmx-task-changebt:hover {
+    background: #dbe5e7 none repeat scroll 0 0;
+}
+
+
+.lmx-nav .lmx-tab{
+}
+
+.lmx-nav .lmx-tab .lmx-tabitem{
+    background: #ecf0f1 none repeat scroll 0 0;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 29px;
+    margin: 0 1px 0 0;
+    min-width: 101px;
+    padding: 5px 8px 4px;
+    position: relative;
+    text-align: center;
+    line-height: 29px;
+}
+
+.lmx-nav .lmx-tab .lmx-tabitem:hover {
+    background: #dbe5e7 none repeat scroll 0 0;
+}
+
+.lmx-nav .lmx-tab .lmx-tabitem.current{
+    background: #dbe5e7 none repeat scroll 0 0;
+}
+
+
+.lmx-tabitem .lmx-tabitem-text{
+    color: #1dd2af;
+    font-family: "Microsoft Yahei",verdana;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+
+.lmx-tabitem .lmx-tabitem-tabclose{
+    cursor: pointer;
+    position: absolute;
+    right: 6px;
+    text-decoration: none;
+    top: 5px;
+}
+
+.lmx-tabitem .lmx-tabitem-tabclose-icon{
+    color: #fff;
+}
+
+.lmx-tabitem .lmx-tabitem-tabclose-icon:hover {
+    color: #ed7669;
+}
+
+
+.lmx-body .lmx-main{
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff none repeat scroll 0 0;
+    margin: 0;
+    /*height: 90%;*/
+}
+
+.lmx .lmx-footer{
+    height: auto;
+    line-height: 26px;
+    padding: 15px 0;
+    background-color: #eee;
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    color: #666;
+    font-weight: 300;
+    text-align: center;
+}
+
+#loading {
+    background: rgba(0, 0, 0, 0) url("../images/loadingbg.png") no-repeat scroll 0 0;
+    color: #fff;
+    display: none;
+    height: 26px;
+    left: 250px;
+    position: absolute;
+    top: 10px;
+    width: 100px;
+    z-index: 9999;
+}
+
+#loading span {
+    font-family: "Microsoft Yahei",verdana;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    margin-left: 26px;
+}
+
+
+#loading .loadingicon {
+    background: rgba(0, 0, 0, 0) url("../images/loading.gif") no-repeat scroll center center;
+    display: inline-block;
+    height: 26px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 26px;
+}
+
+#right_tools_wrapper {
+    float: right;
+    margin-right: 9px;
+    cursor: pointer;
+}
+
+#right_tools_wrapper span {
+    vertical-align: middle;
+}
+
+
+#right_tools_wrapper span .right_tool_icon {
+    color: #1dd2af;
+}
+#right_tools_wrapper span .right_tool_icon {
+    color: #1dd2af;
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+}
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+
+/*后台模块主要样式文件*/
+
+
+
+.lmx-larry-box{
+    display:block;
+    height: auto;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.lmx-wrapper{
+    border: medium none;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+
+}
+
+.lmx-wrapper .tab{
+
+}
+
+
+.lmx-wrapper .list{
+
+}
+
+.lmx-wrapper .quote{
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 0;
+    /*border-left: 5px solid #009688;*/
+    border-radius: 0 2px 2px 0;
+    line-height: 22px;
+    /*padding: 15px;*/
+}
+
+.lmx-wrapper .tab-title{
+    transition: all 0.2s ease 0s;
+    white-space: nowrap;
+}
+
+.tab-title li{
+    min-width: 65px;
+    transition: all 0.3s ease 0s;
+    display: inline-block;
+    padding: 7px 10px;
+    border-radius: 4px 4px 0 0;
+    color: #999;
+    cursor: pointer;
+}
+
+.tab-title li.active{
+    border-image: none;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    color: #95a5a6;
+    background-color: #f1f2f7;
+    margin-bottom: -1px;
+    cursor: default;
+}
+.tab-title li.active:hover{
+    background-color: #f1f2f7;
+}
+
+.tab-title li:hover{
+    background-color: #fff;
+}
+
+.tab-btn span{
+    display: block;
+}
+
+/*搜索*/
+.lmx-search{
+    background-color: #ecf0f1;
+    border: 1px solid #d7e0e2;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    min-height: 20px;
+    padding: 19px;
+    margin: 0 0 20px;
+    margin-bottom: 20px;
+}
+.lmx-search .search-input{
+    width: 150px;
+    display:inline;
+    margin-right: 10px;
+}
+
+    /*列表*/
+.lmx-table{
+
+}
+
+/*信息*/
+.lmx-info{
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding-bottom: 0;
+}
+
+.info-header{
+    border-bottom: 1px solid #eeeff1;
+    height: 50px;
+    padding: 0 20px 0 30px;
+    width: 100%;
+}
+.info-header .info-title{
+    color: #858585;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 50px;
+}
+
+.info-content{
+    padding: 20px 20px 150px;
+}
+
+.page{
+}
+
+.page ul{
+    color: #036cb4;
+    font-family: "Helvetica Neue",STHeiti,"Microsoft YaHei",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 15px;
+    text-align: right;
+}
+
+.page ul li{
+    display: inline;
+    margin: 3px 0;
+    padding: 5px 12px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    color: #999;
+}

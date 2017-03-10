@@ -1,0 +1,151 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('index')}">分类管理</a></span>
+                    </li>
+                    <li class="active">
+                        <i class=""></i>
+                        <span>{$title}</span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--表格-->
+    <div class="lmx-info">
+        <header class="info-header">
+            <span class="info-title">{$title}</span>
+        </header>
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+                <!--分类名称-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" value="{$Cate.title ?? ''}" required  lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!--上级分类-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级菜单</label>
+                    <div class="layui-input-block">
+                        <select name="pid" lay-verify="required" autocomplete="off">
+                            <option value="0">一级分类</option>
+                            {volist name='lists' id='vo'}
+                                <option value="{$vo.id}" {if condition="$pid eq $vo.id"}selected{/if}>{$vo.title_show}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+
+                <!--备注-->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">分类描述</label>
+                    <div class="layui-input-block">
+                        <textarea name="description" placeholder="请输入内容" class="layui-textarea">{$Cat.description ?? ''}</textarea>
+                    </div>
+                </div>
+
+                <!--排序-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="listorder" value="{$Cate.listorder ?? ''}" placeholder="请输入排序" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                </div>
+
+                <!--状态-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="0" title="禁用"  autocomplete="off" {if condition="(empty($Cate.status))"}checked{/if}>
+                        <input type="radio" name="status" value="1" title="启用"  autocomplete="off" {if condition="(!empty($Cate.status) and ($Cate.status eq 1))"}checked{/if}>
+                    </div>
+                </div>
+
+                <!--提交按钮-->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+                        setTimeout(function () {
+                            window.location.href = res.url;
+                        },1000);
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+
+

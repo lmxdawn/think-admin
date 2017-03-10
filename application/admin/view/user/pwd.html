@@ -1,0 +1,136 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('edit')}">修改信息</a></span>
+                    </li>
+                    <li class="active">
+                        <i class=""></i>
+                        <span><a href="#">修改密码</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--表格-->
+    <div class="lmx-info">
+        <header class="info-header">
+            <span class="info-title">{$title}</span>
+        </header>
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+                <!--原始密码-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">原始密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="user_pass" required  lay-verify="required" placeholder="请输入原始密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <!--新密码-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="new_pass" required  lay-verify="required" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <!--确认新密码-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="ok_new_pass" reqed  lay-verify="required" placeholder="确认新密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+
+            if (data.field.new_pass != data.field.ok_new_pass){
+                layer.msg('两次密码必须一致');
+                return false;
+            }
+
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+                        setTimeout(function () {
+                            window.location.href = res.url;
+                        },1000);
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+
+

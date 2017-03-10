@@ -1,0 +1,142 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span><a href="#">修改信息</a></span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('pwd')}">修改密码</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--表格-->
+    <div class="lmx-info">
+        <header class="info-header">
+            <span class="info-title">{$title}</span>
+        </header>
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+                <!--用户名-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="user_name" value="{$user.user_name ?? ''}" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <!--性别-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <select name="sex" lay-verify="required" autocomplete="off">
+                            <option value="0" {if condition="$user.sex eq 0"}selected{/if}>保密</option>
+                            <option value="1" {if condition="$user.sex eq 1"}selected{/if}>男</option>
+                            <option value="2" {if condition="$user.sex eq 2"}selected{/if}>女</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--个性网址-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">个性网址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="user_url" value="{$user.user_url ?? ''}" placeholder="请输入个人网址" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                </div>
+
+                <!--个性签名-->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">个性签名</label>
+                    <div class="layui-input-block">
+                        <textarea name="signature" placeholder="请输入个性签名" class="layui-textarea">{$user.signature ?? ''}</textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+                        setTimeout(function () {
+                            window.location.href = res.url;
+                        },1000);
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+
+

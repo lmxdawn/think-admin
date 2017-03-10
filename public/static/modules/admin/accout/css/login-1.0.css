@@ -1,0 +1,207 @@
+
+html{height:100%}
+body{
+    height:auto;background:url(../images/login-background.jpg) no-repeat center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;color:rgba(255,255,255,.95);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.signinpanel{
+    width:750px;margin:10% auto 0
+}
+
+.form-control {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.signinpanel .signin-info ul{
+    list-style:none;padding:0;margin:20px 0
+}
+.signinpanel .form-control{
+    display:block;margin-top:15px
+}
+.signinpanel .uname{
+    background:#fff url(../images/user.png) no-repeat 95% center;color:#333
+}
+.signinpanel .pword{
+    background:#fff url(../images/locked.png) no-repeat 95% center;color:#333
+}
+.signinpanel .pword {
+    background: #fff url("../images/locked.png") no-repeat scroll 95% center;
+    color: #333;
+}
+
+.signinpanel .btn{
+    margin-top:15px
+}
+
+.signinpanel .form-control {
+    display: block;
+    margin-top: 15px;
+}
+.m-b {
+    margin-bottom: 15px;
+}
+
+.signinpanel form{
+    background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);
+    -moz-box-shadow:0 3px 0 rgba(12,12,12,.03);
+    -webkit-box-shadow:0 3px 0 rgba(12,12,12,.03);
+    box-shadow:0 3px 0 rgba(12,12,12,.03);
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;padding:30px
+}
+
+
+.form-control, .single-line {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    font-size: 14px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.signinpanel .logopanel {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    float: none;
+    padding: 0;
+    width: auto;
+}
+
+.signup-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+    padding-top: 15px;
+}
+
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.btn-success {
+    background-color: #1c84c6;
+    border-color: #1c84c6;
+    color: #fff;
+}
+
+.btn-group-vertical > .btn-group::after, .btn-toolbar::after, .clearfix::after, .container-fluid::after, .container::after, .dl-horizontal dd::after, .form-horizontal .form-group::after, .modal-footer::after, .modal-header::after, .nav::after, .navbar-collapse::after, .navbar-header::after, .navbar::after, .pager::after, .panel-body::after, .row::after {
+    clear: both;
+}
+
+.btn-group-vertical > .btn-group::after, .btn-group-vertical > .btn-group::before, .btn-toolbar::after, .btn-toolbar::before, .clearfix::after, .clearfix::before, .container-fluid::after, .container-fluid::before, .container::after, .container::before, .dl-horizontal dd::after, .dl-horizontal dd::before, .form-horizontal .form-group::after, .form-horizontal .form-group::before, .modal-footer::after, .modal-footer::before, .modal-header::after, .modal-header::before, .nav::after, .nav::before, .navbar-collapse::after, .navbar-collapse::before, .navbar-header::after, .navbar-header::before, .navbar::after, .navbar::before, .pager::after, .pager::before, .panel-body::after, .panel-body::before, .row::after, .row::before {
+    content: " ";
+    display: table;
+}
+
+
+@media screen and (max-width:768px){
+    .signinpanel,.signuppanel{
+        margin:0 auto;width:420px!important;padding:20px
+    }
+    .signinpanel form{
+        margin-top:20px
+    }
+    .signup-footer,.signuppanel .form-control{
+        margin-bottom:10px
+    }
+    .signup-footer .pull-left,.signup-footer .pull-right{
+        float:none!important;text-align:center
+    }
+    .signinpanel .signin-info ul{
+        display:none
+    }
+}
+@media screen and (max-width:320px){
+    .signinpanel,.signuppanel{
+        margin:0 20px;width:auto
+    }
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+    float: left;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.col-sm-5 {
+    width: 41.6667%;
+}
+.col-sm-7{
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.col-sm-7 {
+    width: 58.3333%;
+}
+
+.m-t-md {
+    margin-top: 20px;
+}
+
+.pull-left {
+    float: left;
+}
+.pull-left {
+    float: left !important;
+}
+
+.signinpanel .form-control {
+    display: block;
+    margin-top: 15px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+

@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>{block name="title"}{$title ?? ''}--{$Think.config.sys_config.lmx_title ?? '后台管理'}{/block}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--公共css-->
+    {include file="header" /}
+
+    <!--CSS引用-->
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/css/main.css?t={$Think.config.sys_config.lmx_version}" >
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/extend/admin/sidebarMenu.css?t={$Think.config.sys_config.lmx_version}" >
+
+</head>
+
+<body>
+
+
+
+    <div class="lmx">
+
+        <div id="loading"><i class="loadingicon"></i><span>正在加载...</span></div>
+
+
+        <!--头部 start-->
+        <div class="lmx-header" id="lmx-header">
+
+        </div>
+        <!--头部 end-->
+
+        <!--左侧 start-->
+        <div class="lmx-left" id="lmx-left">
+
+            <div class="lmx-left-manual">
+                <span class="lmx-left-manual-switch">
+                    <i class="fa fa-angle-double-left" id="close" title="关闭侧边栏"></i>
+                </span>
+            </div>
+
+            <div class="lmx-left-nav">
+
+                <!--导航栏顶部折叠 start-->
+                <div class="lmx-left-fold" id="lmx-left-fold">
+                    <i class="fa fa-reorder"></i>
+                </div>
+                <!--导航栏顶部折叠 end-->
+
+                <!--左侧导航 start-->
+                <div class="lmx-left-nav-content">
+                    <aside class="main-sidebar">
+                        <section  class="sidebar">
+                            <ul class="sidebar-menu">
+                                <li class="header">主导航</li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span>仪表盘</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-dashboard"></i> 仪表盘 v1</a></li>
+                                        <li><a href="#"><i class="fa fa-dashboard"></i> 仪表盘 v2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-files-o"></i>
+                                        <span>布局选项</span>
+                                        <span class="label label-primary pull-right">4</span>
+                                    </a>
+                                    <ul class="treeview-menu" style="display: none;">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 顶部导航</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 盒子布局</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 固定布局</a></li>
+                                        <li class=""><a href="#"><i class="fa fa-circle-o"></i> 折叠侧边栏</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-th"></i> <span>窗口小部件</span>
+                                        <small class="label pull-right label-info">新的</small>
+                                    </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-pie-chart"></i>
+                                        <span>图表</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Morris</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Flot</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-laptop"></i>
+                                        <span>UI 元素</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 一般</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Icons图标</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 按钮</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 滑块</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 时间表</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 模态框</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-edit"></i> <span>表单</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 一般表单</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 高级表单</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 可编辑表单</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-table"></i> <span>表格</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 简单表格</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 时间表格</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-calendar"></i> <span>日历</span>
+                                        <small class="label pull-right label-danger">3</small>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-envelope"></i> <span>邮箱</span>
+                                        <small class="label pull-right label-warning">12</small>
+                                    </a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-folder"></i> <span>实例</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 清单</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 简况</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 登录</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 注册</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 锁频</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 404 错误</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 500 错误</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 空白页面</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 自适应页面</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-share"></i> <span>多级</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-circle-o"></i> 一级 <i class="fa fa-angle-right pull-right"></i></a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="#"><i class="fa fa-circle-o"></i> 二级</a></li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-circle-o"></i> 二级 <i class="fa fa-angle-right pull-right"></i></a>
+                                                    <ul class="treeview-menu">
+                                                        <li><a href="#"><i class="fa fa-circle-o"></i> 三级</a></li>
+                                                        <li><a href="#"><i class="fa fa-circle-o"></i> 三级</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><i class="fa fa-book"></i> <span>文档</span></a></li>
+                                <li class="header">标签</li>
+                                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>警告</span></a></li>
+                                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>通知</span></a></li>
+                            </ul>
+                        </section>
+                    </aside>
+                </div>
+                <!--左侧导航 end-->
+            </div>
+
+        </div>
+        <!--左侧 end-->
+
+
+        <!--内容部分 start-->
+        <div class="lmx-content" id="lmx-content">
+
+            <!--内容主体 start-->
+
+            <div class="lmx-breadcrumbs">
+
+                <!--向左按钮-->
+                <a id="task-pre" class="lmx-task-changebt">←</a>
+
+                <!--导航 start-->
+                <div class="lmx-nav" id="lmx-nav" style="max-width: 834px;">
+
+                    <ul class="lmx-tab" id="lmx-tab" style="width: 800px;">
+
+                        <li class="lmx-tabitem current" app-id="0" app-url="{:url('main/index')}" app-name="首页">
+                            <i class="fa fa-desktop"></i>
+                            <span class="lmx-tabitem-text" title="后台首页">后台首页</span>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!--导航 end-->
+
+                <a id="task-next" class="lmx-task-changebt">→</a>
+
+                <div id="right_tools_wrapper">
+                    <span id="refresh_wrapper" title="刷新页面" ><i class="fa fa-refresh right_tool_icon"></i></span>
+                </div>
+
+
+            </div>
+
+            <!--主体-->
+            <div class="lmx-main" id="lmx-main">
+                <!--<div class="loadSpin" id="loadSpin">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>-->
+                <!--<iframe src="{:url('main/index')}" style="width: 100%; height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>-->
+            </div>
+
+
+            <!--内容主体 end-->
+
+
+        </div>
+        <!--内容部分 end-->
+
+    </div>
+
+
+
+    <!--公共js-->
+    {include file="footer" /}
+
+    <!--JS引用-->
+    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
+
+
+
+</body>
+
+</html>

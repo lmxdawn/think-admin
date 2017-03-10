@@ -1,0 +1,157 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span>数据备份</span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('restore')}">数据列表</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--表格-->
+    <div class="lmx-info">
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">每个分卷文件大小</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sizelimit" value="1024" required  lay-verify="required" placeholder="请输入分卷大小" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">(推荐10M以下)</div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备份名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="backup_name" value="<?php echo date('YmdHis')?>" required  lay-verify="required" placeholder="请输入备份名称" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"></div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备份类型</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="backup_type" lay-filter="backup_type" value="full" title="全部备份"  autocomplete="off"  checked>
+                        <input type="radio" name="backup_type" lay-filter="backup_type"  value="custom" title="自定义备份"  autocomplete="off" onclick="javascript:$('#js-showtables').show();">
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="js-showtables" style="display:none;">
+                    <label class="layui-form-label">数据库列表</label>
+                    <div class="layui-input-block">
+                        {volist name="tables" id="val"}
+
+                            <input name="backup_tables[{$val}]" type="checkbox" value="-1" checked="checked" class="js-checkitem" title="{$val}" />
+
+                        {/volist}
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+
+            </form>
+            <style type="text/css">
+
+
+            </style>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        form.on('radio(backup_type)', function(data){
+            var $this = $(data.elem);
+            if (data.value == 'full'){
+                $('#js-showtables').hide();
+            }else {
+                $('#js-showtables').show();
+            }
+        });
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+                        setTimeout(function () {
+                            window.location.href = "{:Url('index')}";
+                        },1000);
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+
+
+
+

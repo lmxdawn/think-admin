@@ -1,0 +1,159 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span>管理员</span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('add')}">添加管理员</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--搜索-->
+    <div class="lmx-search">
+        <form class="form-search" method="get" action="">
+            <div class="layui-form-item">
+                用户ID：
+                <input type="text" name="id" placeholder="请输入用户ID" value="{$id}" autocomplete="off" class="search-input layui-input">
+                关键字：
+                <input type="text" name="kwd" placeholder="用户名/昵称/邮箱" value="{$kwd}" autocomplete="off" class="search-input layui-input">
+                <button class="layui-btn" lay-submit="" lay-filter="theForm">搜索</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!--表格-->
+    <div class="lmx-table">
+        <table class="layui-table">
+            <colgroup>
+                <col width="100">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>最后登录时间</th>
+                <th>最后登录ip</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='lists' id='vo'}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.user_name}</td>
+                    <td>{$vo.user_email}</td>
+                    <td>{$vo.last_login_time|date='Y-m-d H:i:s',###}</td>
+                    <td>{$vo.last_login_ip}</td>
+                    <td>{$vo.user_status}</td>
+                    <td>
+                        <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                        <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+                    </td>
+                </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+        <div class="page">
+            {$lists->render()}
+        </div>
+
+    </div>
+
+
+</section>
+
+{/block}
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['layer'], function(){
+
+        $(".delete").click(function () {
+
+            var $this = $(this)
+                ,url = $this.attr('href')
+                ,id = $this.data('id')
+                ,data = {'id' : id}
+
+            //询问框
+            layer.confirm('你确定删除？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                //确定
+                layer.closeAll();
+
+                if (!id){
+                    return false;
+                }
+                $this.css('background-color','#ccc');
+                $this.data('id','');
+                $.ajax({
+                    type : 'post',
+                    url : url,
+                    data : data,
+                    dataType : 'json',
+                    success : function (res) {
+                        //提示层
+                        setTimeout(function () {
+                            layer.msg(res.msg);
+                        },500);
+
+
+                        if (res.code == 1){
+                            $this.parents('tr').remove();
+                        }else {
+                            $this.css('background-color','#FF5722');
+                            $this.data('id',id);
+                        }
+                    },
+                    error : function (e) {
+                        $this.css('background-color','#FF5722');
+                        $this.data('id',id);
+                    }
+                });
+            }, function(){
+
+            });
+
+
+            return false;
+        })
+
+    });
+</script>
+
+
+{/block}
+
+
+
