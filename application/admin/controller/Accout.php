@@ -12,9 +12,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Users;
-use think\Config;
 use think\Controller;
-use think\Request;
 use think\Session;
 use think\Url;
 
@@ -26,23 +24,6 @@ use think\Url;
 class Accout extends Controller
 {
 
-    public function __construct(Request $request = null)
-    {
-        parent::__construct($request);
-
-        $debug = Config::get('app_debug');
-
-        if ($debug == true){
-            //调试环境
-            Config::set('sys_config.lmx_static_url','//www.shuangkai.com/static');
-            Config::set('sys_config.lmx_static_debug',true);
-
-        }else{
-            //正式环境
-
-        }
-
-    }
 
     /**
      * 登录

@@ -15,7 +15,6 @@ namespace app\admin\controller;
 use app\common\model\Menu;
 use app\common\model\Users;
 use lmxdawn\auth\Auth;
-use think\Config;
 use think\Controller;
 use think\Hook;
 use think\Request;
@@ -35,18 +34,6 @@ class Base extends Controller
 
         parent::__construct($request);
 
-        $debug = Config::get('app_debug');
-
-        if ($debug == true){
-            //调试环境
-            Config::set('sys_config.lmx_static_url','//www.shuangkai.com/static');
-            Config::set('sys_config.lmx_static_debug',true);
-
-
-        }else{
-            //正式环境
-
-        }
 
         //注册行为
         Hook::add('app_init','app\\admin\\behavior\\CheckAuth');
