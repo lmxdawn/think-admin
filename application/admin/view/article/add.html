@@ -1,5 +1,30 @@
 {extend name="base" /}
 
+<!--CSS引用-->
+{block name="css"}
+{__block__}
+
+
+<style>
+    .site-demo-upload {
+        position: relative;
+        background: #e2e2e2;
+    }
+    .site-demo-upload .site-demo-upbar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -18px 0 0 -56px;
+    }
+    .site-demo-upload, .site-demo-upload img {
+        width: 100%;
+        height: 200px;
+        /*border-radius: 100%;*/
+    }
+</style>
+
+{/block}
+
 
 {block name="body"}
 
@@ -32,9 +57,9 @@
 
     <!--表格-->
     <div class="lmx-info">
-        <header class="info-header">
-            <span class="info-title">{$title}</span>
-        </header>
+        <!--<header class="info-header">-->
+        <!--<span class="info-title">{$title}</span>-->
+        <!--</header>-->
         <div class="info-content">
             <form class="layui-form" id="theForm" action="" enctype="multipart/form-data">
 
@@ -87,9 +112,8 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">内容</label>
                         <div class="layui-input-block">
-                            <textarea class="layui-textarea" name="content" id="content" style="display: none">
-
-                            </textarea>
+                            <!-- 加载编辑器的容器 -->
+                            <script id="container" name="content" type="text/plain">这里写你的初始化内容</script>
                         </div>
                     </div>
 
@@ -100,9 +124,14 @@
                     <!--缩略图-->
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">缩略图</label>
-                        <div class="layui-input-block">
-                            <div class="site-demo-upload">
-                                <input name="image" id="image" class="layui-upload-file" type="file">
+                        <input name="smeta[thumb]" id="thumb" value="" type="hidden">
+                    </div>
+                    <!--缩略图-->
+                    <div class="layui-form-item layui-form-text">
+                        <div class="site-demo-upload">
+                            <img id="thumb_upload" src="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png">
+                            <div class="site-demo-upbar">
+                                <input name="image" class="layui-upload-file" id="image" type="file">
                             </div>
                         </div>
                     </div>
@@ -110,9 +139,11 @@
                     <!--发布时间-->
                     <div class="layui-form-item">
                         <label class="layui-form-label">发布时间</label>
-                        <div class="layui-input-inline">
-                            <input name="u_date" id="u_date" value="{$Article.u_date ?? date('Y-m-d H:i:s')}" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" type="text">
-                        </div>
+                    </div>
+                    <!--发布时间-->
+                    <div class="layui-form-item">
+                        <input name="u_date" id="u_date" value="{$Article.u_date ?? date('Y-m-d H:i:s')}" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" type="text">
+
                     </div>
 
                     <!--状态-->
@@ -142,16 +173,6 @@
                         </div>
                     </div>
 
-                    <!--文章模板-->
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">文章模板</label>
-                        <div class="layui-input-block">
-                            <select name="template" lay-verify="required" autocomplete="off">
-                                <option value="list" {if condition="(!empty($Article.template) and ($Article.template eq 'list'))"} selected{/if}>list</option>
-                            </select>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div style="clear: both;"></div>
@@ -176,34 +197,43 @@
 
 {/block}
 
+
+<!--JS引用-->
+{block name="js"}
+{__block__}
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="{$Think.config.sys_config.lmx_static_url}/ueditor1_4_3/ueditor.config.js?t={$Think.config.sys_config.lmx_version}"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="{$Think.config.sys_config.lmx_static_url}/ueditor1_4_3/ueditor.all.js?t={$Think.config.sys_config.lmx_version}"></script>
+
+
+{/block}
+
 <!--页面JS脚本-->
 {block name="script"}
 {__block__}
 <script>
 
-    layui.use(['form','laydate','layedit','upload'], function(){
+
+    var ue = UE.getEditor('container');
+
+    layui.use(['form','laydate','upload'], function(){
 
         layui.upload({
             url: "{:Url('Upload/images')}"
             ,elem: '#image' //指定原始元素，默认直接查找class="layui-upload-file"
             ,method: 'post' //上传接口的http类型
             ,success: function(res){
-                console.log(res)
-                alert(res)
+                layer.msg(res.data.msg);
+
+                if (res.data.title){
+                    $("#thumb").val(res.data.title);
+                    $("#thumb_upload").attr('src','__ROOT__/uploads/' + res.data.title);
+                }
+
             }
         });
-
-        var layedit = layui.layedit
-            ,$ = layui.jquery;
-
-        //构建一个编辑器
-        layedit.set({
-            uploadImage: {
-                url: "{:Url('Upload/images')}" //接口url
-                ,type: 'post' //默认post
-            }
-        });
-        var index = layedit.build('content');
 
         var form = layui.form();
 
