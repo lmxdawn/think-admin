@@ -102,7 +102,7 @@
                         <label class="layui-form-label">缩略图</label>
                         <div class="layui-input-block">
                             <div class="site-demo-upload">
-                                <input name="thumb" id="thumb" class="layui-upload-file" type="file">
+                                <input name="image" id="image" class="layui-upload-file" type="file">
                             </div>
                         </div>
                     </div>
@@ -185,10 +185,11 @@
 
         layui.upload({
             url: "{:Url('Upload/images')}"
-            ,elem: '#thumb' //指定原始元素，默认直接查找class="layui-upload-file"
+            ,elem: '#image' //指定原始元素，默认直接查找class="layui-upload-file"
             ,method: 'post' //上传接口的http类型
             ,success: function(res){
                 console.log(res)
+                alert(res)
             }
         });
 
