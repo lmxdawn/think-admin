@@ -82,7 +82,7 @@ class Upload extends Controller
             // 输出 jpg
             $data['ext'] = $info->getExtension();
             // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-            $data['title'] = $path.'/'.$data['title'];
+            $data['title'] = $info->getSaveName();
             // 输出 42a79759f284b767dfcb2a0197904287.jpg
             $data['file_name'] = $info->getFilename();
         }else{
