@@ -70,10 +70,10 @@ class Article extends Base {
             $result = $Articlemodel->allowField(true)->save($data);
 
             if (empty($result)){
-                $this->error('新闻添加失败');
+                $this->error('文章添加失败');
             }
 
-            $this->success('新闻添加成功',Url::build('index'));
+            $this->success('文章添加成功',Url::build('index'));
 
         }else{
 
@@ -83,7 +83,7 @@ class Article extends Base {
             $category_id = $this->request->param('category_id/d');
 
             return $this->view->fetch('add',[
-                'title' => '添加新闻',
+                'title' => '添加文章',
                 'category_id' => $category_id,
                 'lists' => $lists,
             ]);
@@ -124,17 +124,17 @@ class Article extends Base {
             $result = $Article->isUpdate(true)->allowField(true)->save($data);
 
             if (false == $result){
-                $this->error('新闻更新失败');
+                $this->error('文章更新失败');
             }
 
-            $this->success('新闻更新成功');
+            $this->success('文章更新成功');
 
 
         }else{
 
             //编辑页面
             if (empty($Article)){
-                $this->error('没有新闻信息');
+                $this->error('没有文章信息');
             }
 
             $category_id = $Article->category_id;
