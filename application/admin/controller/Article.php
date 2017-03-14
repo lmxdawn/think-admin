@@ -23,7 +23,7 @@ use think\Url;
 class Article extends Base {
 
     /**
-     *菜单列表
+     *列表
      */
     public function index(){
 
@@ -51,37 +51,29 @@ class Article extends Base {
         if ($this->request->isPost()){
             $data = $this->request->post();
 
-            $file = request()->file('image');
-            dump($_FILES);
-            //dump($data);
-            exit;
-
             if (empty($data)){
                 $this->error('数据不能为空');
             }
 
-            $result = $this->validate($data,'Category');
+            $result = $this->validate($data,'Article');
             if (true !== $result){
                 //数据验证失败
                 $this->error($result);
             }
 
-            $count = Categorymodel::where(['title' => $data['title']])
-                ->count();
-            if ($count > 0){
-                $this->error('该分类已经存在');
-            }
 
             // 菜单模型
-            $Categorymodel = Categorymodel::getInstance();
+            $Articlemodel = Articlemodel::getInstance();
 
-            $result = $Categorymodel->save($data);
+            $data['smeta'] = json_encode($data['smeta']);
+
+            $result = $Articlemodel->allowField(true)->save($data);
 
             if (empty($result)){
-                $this->error('菜单添加失败');
+                $this->error('新闻添加失败');
             }
 
-            $this->success('菜单添加成功',Url::build('index'));
+            $this->success('新闻添加成功',Url::build('index'));
 
         }else{
 
@@ -91,7 +83,7 @@ class Article extends Base {
             $category_id = $this->request->param('category_id/d');
 
             return $this->view->fetch('add',[
-                'title' => '添加文章',
+                'title' => '添加新闻',
                 'category_id' => $category_id,
                 'lists' => $lists,
             ]);
@@ -103,16 +95,16 @@ class Article extends Base {
 
 
     /**
-     * 编辑菜单
+     * 编辑
      */
     public function edit(){
 
         $id = $this->request->param('id/d');
         $where['id'] = $id;
         // 分类信息
-        $Cate = Categorymodel::where($where)
+        $Article = Articlemodel::where($where)
             ->field(
-                ['id','pid','title','status','description','listorder']
+                ['id','category_id','title','keywords','source','u_date','content','excerpt','status','smeta','hits','istop','recommended']
             )
             ->find();
 
@@ -122,57 +114,40 @@ class Article extends Base {
                 $this->error('数据不能为空');
             }
 
-            $result = $this->validate($data,'Category');
+            $result = $this->validate($data,'Article');
             if (true !== $result){
                 //数据验证失败
                 $this->error($result);
             }
 
-            $wh['id'] = ['neq',$id];
-            $wh['title'] = $data['title'];
-            $count = Categorymodel::where($wh)
-                ->count();
-            if ($count > 0){
-                $this->error('该分类已经存在');
-            }
 
-            if ($Cate->id == $data['pid']){
-                $this->result([],-1,'不能把自身作为父级菜单','json');
-            }
-            $sub_menu = Categorymodel::where(['pid' => $id])->field(['id'])->select();
-            foreach ($sub_menu as $value){
-                if ($value['id'] == $data['pid']){
-                    $this->error('不能把子级作为父级分类');
-                }
-            }
-
-
-            $result = $Cate->isUpdate(true)->save($data);
+            $result = $Article->isUpdate(true)->allowField(true)->save($data);
 
             if (false == $result){
-                $this->error('分类添加失败');
+                $this->error('新闻更新失败');
             }
 
-            $this->success('分类更新成功');
+            $this->success('新闻更新成功');
 
 
         }else{
 
             //编辑页面
-            if (empty($Cate)){
-                $this->error('没有分类信息');
+            if (empty($Article)){
+                $this->error('没有新闻信息');
             }
 
-            //获取树形列表
-            $lists = Categorymodel::getTreeCategory();
+            $category_id = $Article->category_id;
+            $Article->smeta = json_decode($Article->smeta,true);
 
-            $pid = $Cate->pid;
+            //获取分类树形列表
+            $lists = Category::getTreeCategory();
 
             return $this->view->fetch('add',[
                 'title' => '编辑分类',
                 'lists' => $lists,
-                'pid' => $pid,
-                'Cate' => $Cate,
+                'category_id' => $category_id,
+                'Article' => $Article,
             ]);
 
 
@@ -186,11 +161,7 @@ class Article extends Base {
                 $this->error('参数错误！');
             }
 
-            $sub_cate = Categorymodel::get(['pid' => $id]);
-            if ($sub_cate){
-                $this->error('此菜单下存在子菜单，不可删除！');
-            }
-            if (Categorymodel::destroy($id)){
+            if (Articlemodel::destroy($id)){
                 $this->success('删除成功！');
             }
 
