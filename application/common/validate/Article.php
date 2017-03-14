@@ -30,7 +30,7 @@ class Article extends Validate
     //验证提示信息
     protected $message = [
         'title.require'      => '文章标题不能为空'
-        ,'title.max'         => '文章标题不能超过255个字符'
+        ,'title.max'         => '文章标题不能超过50个字符'
         ,'content.require'      => '文章内容不能为空'
         ,'content.min'         => '文章内容不能少于10个字符'
     ];
