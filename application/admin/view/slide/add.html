@@ -1,0 +1,230 @@
+{extend name="base" /}
+
+<!--CSS引用-->
+{block name="css"}
+{__block__}
+
+
+<style>
+    .site-demo-upload {
+        position: relative;
+        background: #e2e2e2;
+    }
+    .site-demo-upload .site-demo-upbar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -18px 0 0 -56px;
+    }
+    .site-demo-upload, .site-demo-upload img {
+        width: 150px;
+        height: 100px;
+        float: left;
+        /*border-radius: 100%;*/
+    }
+</style>
+
+{/block}
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('index')}">幻灯片管理</a></span>
+                    </li>
+                    <li class="active">
+                        <i class=""></i>
+                        <span><a href="#">添加幻灯片</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+    <!--表格-->
+    <div class="lmx-info">
+        <header class="info-header">
+            <span class="info-title">{$title}</span>
+        </header>
+        <div class="info-content">
+            <form class="layui-form" id="theForm" action="">
+
+                <!--分类-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类</label>
+                    <div class="layui-input-block">
+                        <select name="cid" lay-verify="required" autocomplete="off">
+                            {volist name='lists' id='vo'}
+                            <option value="{$vo.id}" {if condition="(!empty($Slide.cid) and ($Slide.cid eq $vo.id))"}selected{/if}>{$vo.name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+
+                <!--幻灯片名称-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">幻灯片名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" value="{$Slide.name ?? ''}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <!--缩略图-->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">缩略图</label>
+                    <input name="pic" id="pic" value="{$Slide.pic ?? ''}" type="hidden">
+
+                    <div class="layui-input-block">
+                        <div class="site-demo-upload">
+                            <img id="pic_upload" src="{if condition='!empty($Slide.pic)'}{$Think.config.sys_config.lmx_upload_url}/{$Slide.pic}{else /}{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png{/if}">
+                            <div class="site-demo-upbar">
+                                <input name="image" class="layui-upload-file" id="image" type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--链接-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">链接</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="url" value="{$Slide.url ?? ''}" required lay-verify="required" placeholder="请输入链接" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                </div>
+
+                <!--描述-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">描述</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="des" value="{$Slide.des ?? ''}" required lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                </div>
+
+
+                <!--排序-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="listorder" value="{$Slide.listorder ?? ''}" required lay-verify="required" placeholder="请输入排序" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                </div>
+
+
+                <!--内容-->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-block">
+                        <textarea name="content" placeholder="请输入内容" class="layui-textarea">{$Slide.content ?? ''}</textarea>
+                    </div>
+                </div>
+
+                <!--状态-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="0" title="禁用"  autocomplete="off" {if condition="(empty($Slide.status))"}checked{/if}>
+                        <input type="radio" name="status" value="1" title="正常"  autocomplete="off" {if condition="(!empty($Slide.status) and ($Slide.status eq 1))"}checked{/if}>
+                    </div>
+                </div>
+
+
+                <!--提交按钮-->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['form','laydate','upload'], function(){
+
+        layui.upload({
+            url: "{:Url('Upload/images')}"
+            ,elem: '#image' //指定原始元素，默认直接查找class="layui-upload-file"
+            ,method: 'post' //上传接口的http类型
+            ,success: function(res){
+                layer.msg(res.data.msg);
+
+                if (res.data.title){
+                    $("#pic").val(res.data.title);
+                    $("#pic_upload").attr('src','{$Think.config.sys_config.lmx_upload_url}/' + res.data.title);
+                }
+
+            }
+        });
+
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                    //提示层
+                    layer.msg(res.msg);
+                    if (res.code == 1){
+                        setTimeout(function () {
+                            window.location.href = "{:Url('index')}";
+                        },1000);
+                    }
+                },
+                error : function (e) {
+                    layer.msg('网络错误，请重试！');
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+</script>
+
+
+{/block}
+

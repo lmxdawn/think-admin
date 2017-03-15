@@ -1,0 +1,89 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span>幻灯片分类管理</span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('add')}">添加分类</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+
+
+    <!--表格-->
+    <div class="lmx-table">
+        <table class="layui-table">
+            <colgroup>
+                <col width="50">
+                <col width="400">
+                <col width="300">
+                <col width="130">
+                <col width="130">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>分类名称</th>
+                <th>分类标识</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='lists' id='vo'}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.idname}</td>
+                <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
+                <td>
+                    <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                    <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+        <div class="page">
+            {$lists->render()}
+        </div>
+
+    </div>
+
+
+</section>
+
+{/block}
+
+
+<!--页面JS脚本-->
+{block name="js"}
+{__block__}
+
+<script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
+
+
+{/block}

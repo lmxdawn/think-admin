@@ -29,15 +29,48 @@ class Article extends Base {
 
         $where = [];
 
+        $category_id = $this->request->get('category_id/d');
+        if (!empty($category_id)){
+            $where['category_id'] = $category_id;
+        }
+
+        $keywords = $this->request->get('keywords');
+        if (!empty($keywords)){
+            $where['keywords'] = ['like',"%{$keywords}%"];
+        }
+
+        $start_time = $this->request->get('start_time');
+        if(!empty($start_time)){
+            $where['create_time'] = [
+                ['egt',strtotime($start_time)]
+            ];
+        }
+
+        $end_time =  $this->request->get('end_time');
+        if(!empty($end_time)){
+            if(empty($where['create_time'])){
+                $where['create_time'] = [];
+            }
+            array_push($where['create_time'], ['elt',strtotime($end_time)]);
+        }
+
         $lists = Articlemodel::where($where)
             ->field(
                 ['id','uid','pid','title','status','comment_count','hits','likes','create_time']
             )
-            ->select();
+            ->paginate(15);
+
+        // 分类列表
+        $category_lists = Category::getTreeCategory();
 
         return $this->view->fetch('index',[
             'title' => '文章管理',
             'lists' => $lists,
+            'category_lists' => $category_lists,
+            'category_id' => $category_id,
+            'keywords' => $keywords,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
         ]);
 
     }

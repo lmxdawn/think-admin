@@ -85,9 +85,9 @@ layui.use(['sidebarMenu'],function () {
          * 左侧收叠按钮
          */
         $("#lmx-left-fold").click(function () {
-           var width = 30 //需要收叠的宽度
-               ,maxWidth = 200 //最大宽度
-               ,border = 1 //边框
+            var width = 30 //需要收叠的宽度
+                ,maxWidth = 200 //最大宽度
+                ,border = 1 //边框
             if ($("#lmx-left").width() <= width){
                 $("#lmx-left").animate({ "width": maxWidth - border + "px" }, 300, 'swing');//恢复侧边栏宽度
                 $("#lmx-content").animate({'margin-left' : maxWidth + 'px'}, 300, 'swing');//恢复内容部分左边距
@@ -173,7 +173,8 @@ layui.use(['sidebarMenu'],function () {
 
             var $iframe = document.getElementById("appiframe-" + appid);
 
-            $iframe.src = url;
+            //$iframe.src = url;
+            $iframe.contentWindow.location.reload();
             // //这是jQuery 2.1.4以前版本的
             // $iframe.load(function(){
             //     loadHide();//隐藏正在加载

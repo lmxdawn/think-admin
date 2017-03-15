@@ -97,3 +97,11 @@
     color: #fff;
     background: #4a5064 none repeat scroll 0 0;
 }
+
+
+.sidebar-menu .pull-right{
+    margin-left: 0;
+    float: none;
+    position: absolute;
+    left: 180px;
+}

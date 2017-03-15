@@ -1,0 +1,81 @@
+{extend name="base" /}
+
+
+{block name="body"}
+
+<section class="lmx-larry-box">
+
+    <div class="lmx-wrapper">
+
+        <div class="tab">
+
+            <blockquote class="quote">
+                <ul class="tab-title">
+                    <li class="active">
+                        <i class=""></i>
+                        <span>文章管理</span>
+                    </li>
+                    <li class="">
+                        <i class=""></i>
+                        <span><a href="{:Url('add')}">添加文章</a></span>
+                    </li>
+                </ul>
+            </blockquote>
+
+        </div>
+
+        <div class="list">
+
+        </div>
+
+    </div>
+
+
+
+    <!--表格-->
+    <div class="lmx-table">
+        <table class="layui-table">
+            <colgroup>
+                <col width="50">
+                <col width="400">
+                <col width="300">
+                <col width="130">
+                <col width="130">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>标题</th>
+                <th>链接</th>
+                <th>右侧小图</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='lists' id='vo'}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td><a href="{$vo.link}" target="_blank">{$vo.link}</a></td>
+                <td><img src="{$Think.config.sys_config.lmx_upload_url}/{$vo.smeta.thumb}" width="100" height="100"></td>
+                <td>
+                    <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                    <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+        <div class="page">
+            {$lists->render()}
+        </div>
+
+    </div>
+
+
+</section>
+
+{/block}
+
+
