@@ -269,8 +269,8 @@ function getTabWidth() {
 function calcTaskitemsWidth() {
     var width = $("#lmx-tab li").length * tabwidth;
     $lmx_tab.width(width);
-    if (($(document).width()-200-tabwidth- 30 * 2) < width) {
-        $("#lmx-nav").width($(document).width() -200-tabwidth- 30 * 2);
+    if (($(document).width()-320-tabwidth- 30 * 2) < width) {
+        $("#lmx-nav").width($(document).width() -320-tabwidth- 30 * 2);
         $("#task-next,#task-pre").show();
     } else {
         $("#task-next,#task-pre").hide();
