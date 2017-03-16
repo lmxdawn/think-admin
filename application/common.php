@@ -28,12 +28,12 @@ if (!function_exists('sp_get_asset_static_path')) {
 if (!function_exists('sp_get_static_version')) {
     /**
      * 获取静态资源版本号
-     * @param string $asset_url 文件的URL
-     * @return string
+     * @param int $version 版本号
+     * @return int|mixed
      */
-    function sp_get_static_version($asset_url = ''){
+    function sp_get_static_version($version = 0){
 
-        $version = config('sys_config.lmx_version');
+        $version = !empty($version) ? $version : config('sys_config.lmx_version');
         return $version;
     }
 }
