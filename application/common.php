@@ -41,3 +41,16 @@ if (!function_exists('sp_get_asset_upload_path')) {
 
     }
 }
+
+if (!function_exists('substr')) {
+    /**
+     * 截取字符串
+     * @param  string   $string
+     * @param  int      $start
+     * @param  int|null $length
+     * @return string
+     */
+    function substr($string, $start, $length = null){
+        return mb_substr($string, $start, $length, 'UTF-8');
+    }
+}
