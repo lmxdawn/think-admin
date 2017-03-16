@@ -2,6 +2,16 @@
 /*后台模块主要样式文件*/
 
 
+.clearfix {
+}
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.clearfix::after {
+    clear: both;
+}
 
 .lmx-larry-box{
     display:block;

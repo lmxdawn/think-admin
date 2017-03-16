@@ -56,14 +56,13 @@
     </div>
 
     <!--表格-->
-    <div class="lmx-info">
         <!--<header class="info-header">-->
         <!--<span class="info-title">{$title}</span>-->
         <!--</header>-->
-        <div class="info-content">
+        <div>
             <form class="layui-form" id="theForm" action="" enctype="multipart/form-data">
 
-                <div style="float: left;width: 65%;border: 1px solid #CCCCCC;margin-right: 10px;padding: 5px;">
+                <div class="clearfix" style="float: left;width: 65%;border: 1px solid #CCCCCC;margin-right: 10px;padding: 5px;">
                     <!--文章分类-->
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章分类</label>
@@ -113,23 +112,24 @@
                         <label class="layui-form-label">内容</label>
                         <div class="layui-input-block">
                             <!-- 加载编辑器的容器 -->
-                            <script id="container" name="content" type="text/plain">这里写你的初始化内容</script>
+                            <script id="container" name="content" type="text/plain">{$Article.content ?? ''}</script>
                         </div>
                     </div>
 
                 </div>
 
-                <div style="float: left;width: 28%;border: 1px solid #CCCCCC;padding: 5px;">
+
+                <div class="clearfix" style="float: left;width: 28%;border: 1px solid #CCCCCC;padding: 5px;">
 
                     <!--缩略图-->
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">缩略图</label>
-                        <input name="smeta[thumb]" id="thumb" value="" type="hidden">
+                        <input name="smeta[thumb]" id="thumb" value="{$Article.smeta.thumb ?? ''}" type="hidden">
                     </div>
                     <!--缩略图-->
                     <div class="layui-form-item layui-form-text">
                         <div class="site-demo-upload">
-                            <img id="thumb_upload" src="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png">
+                            <img id="thumb_upload" src="{if condition='!empty($Article.smeta.thumb)'}{$Article.smeta.thumb|sp_get_image_preview_url}{else /}{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png{/if}">
                             <div class="site-demo-upbar">
                                 <input name="image" class="layui-upload-file" id="image" type="file">
                             </div>
@@ -139,12 +139,14 @@
                     <!--发布时间-->
                     <div class="layui-form-item">
                         <label class="layui-form-label">发布时间</label>
+                        <div class="layui-input-block">
+                            <input name="u_date" id="u_date" value="{$Article.u_date ?? date('Y-m-d H:i:s')}" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" type="text">
+                        </div>
                     </div>
                     <!--发布时间-->
-                    <div class="layui-form-item">
-                        <input name="u_date" id="u_date" value="{$Article.u_date ?? date('Y-m-d H:i:s')}" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" type="text">
+                    <!--<div class="layui-form-item">-->
 
-                    </div>
+                    <!--</div>-->
 
                     <!--状态-->
                     <div class="layui-form-item">
@@ -168,16 +170,15 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">是否推荐</label>
                         <div class="layui-input-block">
-                            <input type="radio" name="recommended" value="0" title="未置顶"  autocomplete="off" {if condition="(empty($Article.recommended))"}checked{/if}>
-                            <input type="radio" name="recommended" value="1" title="置顶"  autocomplete="off" {if condition="(!empty($Article.recommended) and ($Article.recommended eq 1))"}checked{/if}>
+                            <input type="radio" name="recommended" value="0" title="未推荐"  autocomplete="off" {if condition="(empty($Article.recommended))"}checked{/if}>
+                            <input type="radio" name="recommended" value="1" title="推荐"  autocomplete="off" {if condition="(!empty($Article.recommended) and ($Article.recommended eq 1))"}checked{/if}>
                         </div>
                     </div>
 
                 </div>
 
-                <div style="clear: both;"></div>
 
-                <div style="margin-top: 10px;">
+                <div class="clearfix" style="margin-top: 60px;float: left;">
 
                     <!--提交按钮-->
                     <div class="layui-form-item">
@@ -190,7 +191,6 @@
                 </div>
             </form>
         </div>
-    </div>
 
 
 </section>
@@ -229,7 +229,7 @@
 
                 if (res.data.title){
                     $("#thumb").val(res.data.title);
-                    $("#thumb_upload").attr('src','__ROOT__/uploads/' + res.data.title);
+                    $("#thumb_upload").attr('src','{:sp_get_image_preview_url()}' + res.data.title);
                 }
 
             }

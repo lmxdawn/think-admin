@@ -80,7 +80,7 @@
                 <td>{$vo.name}</td>
                 <td>{$vo.des}</td>
                 <td>{$vo.url}</td>
-                <td><img src="{$Think.config.sys_config.lmx_upload_url}/{$vo.pic ?? ''}" width="100" height="100"></td>
+                <td><img src="{$vo.pic|sp_get_image_preview_url}" width="100" height="100"></td>
                 <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
                 <td>
                     <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>

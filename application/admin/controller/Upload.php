@@ -24,7 +24,7 @@ class Upload extends Controller
 
     public function images(){
 
-        $data = self::file('image',['size'=>15678,'ext'=>'jpg,png,gif']);
+        $data = self::file('image',['size'=>1024000,'ext'=>'jpg,png,gif']);
 
         //dump($data);exit;
 
@@ -36,7 +36,7 @@ class Upload extends Controller
     /**
      * 上传多个文件
      */
-    protected static function files($name = '',$config = ['size'=>15678,'ext'=>'jpg,png,gif']){
+    protected static function files($name = '',$config = ['size'=>1024000,'ext'=>'jpg,png,gif']){
         // 获取表单上传文件 例如上传了001.jpg
         $files = request()->file($name);
         //dump($file);exit;
@@ -67,7 +67,7 @@ class Upload extends Controller
     /**
      * 上传单个文件
      */
-    protected static function file($name = '',$config = ['size'=>15678,'ext'=>'jpg,png,gif']){
+    protected static function file($name = '',$config = ['size'=>1024000,'ext'=>'jpg,png,gif']){
         // 获取表单上传文件 例如上传了001.jpg
         $file = request()->file($name);
         //dump($file);exit;

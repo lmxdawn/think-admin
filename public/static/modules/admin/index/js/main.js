@@ -56,8 +56,8 @@ layui.use(['sidebarMenu'],function () {
          * 调整页面宽高
          */
         function fixHeight() {
-            $lmx_main.height($(window).height() - headerHeight  - tabHeight - 14);
-            $(".lmx-left-nav-content").height($(window).height() - headerHeight  - 30);
+            $lmx_main.height($(window).height() - headerHeight  - tabHeight);
+            $(".lmx-left-nav-content").height($(window).height() - headerHeight  - 16);
             // 调整tab 宽度
             calcTaskitemsWidth();
         }

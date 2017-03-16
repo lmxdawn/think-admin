@@ -13,6 +13,7 @@ namespace app\admin\controller;
 
 use app\common\model\Article as Articlemodel;
 use app\common\model\Category;
+use app\common\model\Users;
 use think\Url;
 
 
@@ -99,6 +100,9 @@ class Article extends Base {
             $Articlemodel = Articlemodel::getInstance();
 
             $data['smeta'] = json_encode($data['smeta']);
+            $data['content'] = htmlspecialchars_decode($data['content']);
+            $user_info = Users::getAdmin();
+            $data['uid'] = !empty($user_info['id']) ? $user_info['id'] : 0;
 
             $result = $Articlemodel->allowField(true)->save($data);
 
@@ -154,6 +158,11 @@ class Article extends Base {
             }
 
 
+            $data['smeta'] = json_encode($data['smeta']);
+            $data['content'] = htmlspecialchars_decode($data['content']);
+            $user_info = Users::getAdmin();
+            $data['uid'] = !empty($user_info['id']) ? $user_info['id'] : 0;
+
             $result = $Article->isUpdate(true)->allowField(true)->save($data);
 
             if (false == $result){
@@ -171,7 +180,7 @@ class Article extends Base {
             }
 
             $category_id = $Article->category_id;
-            $Article->smeta = json_decode($Article->smeta,true);
+            $Article['smeta'] = json_decode($Article['smeta'],true);
 
             //获取分类树形列表
             $lists = Category::getTreeCategory();

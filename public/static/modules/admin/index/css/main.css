@@ -350,9 +350,9 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 }
 
 /*关闭侧边栏按钮 start*/
-.lmx-left .lmx-left-manual {
+.lmx-left-manual {
     position: absolute;
-    right: -14px;
+    left: 0;
     top: 50%;
 }
 
@@ -362,7 +362,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 
 .lmx-left-manual-switch #close {
     background-color: #5cb85c;
-    border-radius: 50%;
+    border-radius: 20%;
     color: #fff;
     cursor: pointer;
     display: inline-block;
@@ -370,7 +370,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     height: 30px;
     position: relative;
     vertical-align: top;
-    width: 30px;
+    width: 15px;
 }
 .lmx-left-manual-switch #close:hover{
     background-color: #449d44;
@@ -378,7 +378,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 
 .lmx-left-manual-switch #close::before {
     position: absolute;
-    right: 5.5px;
+    right: 3px;
     top:5px;
 }
 /*关闭侧边栏按钮 end*/
@@ -421,9 +421,10 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     margin-right: 0;
     margin-top: 0;
     min-height: 100%;
-    padding-left: 10px;
-    padding-top: 10px;
+    /*padding-left: 10px;*/
+    /*padding-top: 10px;*/
     border: 1px solid #e2e2e2;
+    position: relative;
 }
 
 /*内容主体 start*/
@@ -531,7 +532,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 /*iframe页面主体*/
 .lmx-main{
     overflow: hidden;
-    background: #F1F2F7 none repeat scroll 0 0;
+    background: #fff none repeat scroll 0 0;
     margin: 0;
     position: relative;
 }
