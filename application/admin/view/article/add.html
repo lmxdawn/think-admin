@@ -129,7 +129,7 @@
                     <!--缩略图-->
                     <div class="layui-form-item layui-form-text">
                         <div class="site-demo-upload">
-                            <img id="thumb_upload" src="{if condition='!empty($Article.smeta.thumb)'}{$Article.smeta.thumb|sp_get_image_preview_url}{else /}{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png{/if}">
+                            <img id="thumb_upload" src="{if condition='!empty($Article.smeta.thumb)'}{$Article.smeta.thumb|sp_get_image_preview_url}{else /}{:sp_get_asset_static_path()}/modules/admin/base/images/default-thumbnail.png{/if}">
                             <div class="site-demo-upbar">
                                 <input name="image" class="layui-upload-file" id="image" type="file">
                             </div>
@@ -203,9 +203,9 @@
 {__block__}
 
 <!-- 配置文件 -->
-<script type="text/javascript" src="{$Think.config.sys_config.lmx_static_url}/ueditor/ueditor.config.js?t={$Think.config.sys_config.lmx_version}"></script>
+<script type="text/javascript" src="{:sp_get_asset_static_path()}/ueditor/ueditor.config.js?t={:sp_get_static_version()}"></script>
 <!-- 编辑器源码文件 -->
-<script type="text/javascript" src="{$Think.config.sys_config.lmx_static_url}/ueditor/ueditor.all.js?t={$Think.config.sys_config.lmx_version}"></script>
+<script type="text/javascript" src="{:sp_get_asset_static_path()}/ueditor/ueditor.all.js?t={:sp_get_static_version()}"></script>
 
 
 {/block}

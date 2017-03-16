@@ -1,19 +1,19 @@
 
-<script src="{$Think.config.sys_config.lmx_static_url}/common/js/jquery-3.1.1.min.js?t={$Think.config.sys_config.lmx_version}"></script>
+<script src="{:sp_get_asset_static_path()}/common/js/jquery-3.1.1.min.js?t={:sp_get_static_version()}"></script>
 
-<script src="{$Think.config.sys_config.lmx_static_url}/layui/layui.js?t={$Think.config.sys_config.lmx_version}"></script>
+<script src="{:sp_get_asset_static_path()}/layui/layui.js?t={:sp_get_static_version()}"></script>
 
 <script>
     // 定义全局JS变量
     var sys_config = {
-        lmx_static_url: "{$Think.config.sys_config.lmx_static_url}" //静态文件路径
+        lmx_static_url: "{:sp_get_asset_static_path()}" //静态文件路径
         ,lmx_debug : '{$Think.config.sys_config.lmx_static_debug}' //开启调试模式
-        ,lmx_version : '{$Think.config.sys_config.lmx_version}' // 版本号
+        ,lmx_version : '{:sp_get_static_version()}' // 版本号
     };
 
     //config的设置是全局的
     layui.config({
-        version: '{$Think.config.sys_config.lmx_version}' //一般用于更新组件缓存，默认不开启。设为true即让浏览器不缓存。也可以设为一个固定的值，如：201610
+        version: '{:sp_get_static_version()}' //一般用于更新组件缓存，默认不开启。设为true即让浏览器不缓存。也可以设为一个固定的值，如：201610
         ,debug: false //用于开启调试模式，默认false，如果设为true，则JS模块的节点会保留在页面
         ,base: sys_config.lmx_static_url + '/extend/' //设定扩展的Layui组件的所在目录，一般用于外部组件扩展
     });

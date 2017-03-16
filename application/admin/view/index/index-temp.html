@@ -13,8 +13,8 @@
     {include file="header" /}
 
     <!--CSS引用-->
-    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/css/main.css?t={$Think.config.sys_config.lmx_version}" >
-    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/extend/admin/sidebarMenu.css?t={$Think.config.sys_config.lmx_version}" >
+    <link rel="stylesheet" href="{:sp_get_asset_static_path()}/modules/admin/index/css/main.css?t={:sp_get_static_version()}" >
+    <link rel="stylesheet" href="{:sp_get_asset_static_path()}/extend/admin/sidebarMenu.css?t={:sp_get_static_version()}" >
 
 </head>
 
@@ -261,7 +261,7 @@
     {include file="footer" /}
 
     <!--JS引用-->
-    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
+    <script src="{:sp_get_asset_static_path()}/modules/admin/index/js/main.js?t={:sp_get_static_version()}"></script>
 
 
 

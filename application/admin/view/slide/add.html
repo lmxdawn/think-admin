@@ -90,7 +90,7 @@
 
                     <div class="layui-input-block">
                         <div class="site-demo-upload">
-                            <img id="pic_upload" src="{if condition='!empty($Slide.pic)'}{$Slide.pic|sp_get_image_preview_url}{else /}{$Think.config.sys_config.lmx_static_url}/modules/admin/base/images/default-thumbnail.png{/if}">
+                            <img id="pic_upload" src="{if condition='!empty($Slide.pic)'}{$Slide.pic|sp_get_image_preview_url}{else /}{:sp_get_asset_static_path()}/modules/admin/base/images/default-thumbnail.png{/if}">
                             <div class="site-demo-upbar">
                                 <input name="image" class="layui-upload-file" id="image" type="file">
                             </div>

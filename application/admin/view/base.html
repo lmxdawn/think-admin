@@ -15,7 +15,7 @@
 
     <!--CSS引用-->
     {block name="css"}
-        <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/css/main.css?t={$Think.config.sys_config.lmx_version}" >
+        <link rel="stylesheet" href="{:sp_get_asset_static_path()}/modules/admin/base/css/main.css?t={:sp_get_static_version()}" >
     {/block}
 
 </head>

@@ -3,7 +3,7 @@
 <!--CSS引用-->
 {block name="css"}
 {__block__}
-    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/accout/css/login.css?t={$Think.config.sys_config.lmx_version}" >
+    <link rel="stylesheet" href="{:sp_get_asset_static_path()}/modules/admin/accout/css/login.css?t={:sp_get_static_version()}" >
 {/block}
 
 {block name="body"}
@@ -119,7 +119,7 @@
 {block name="js"}
 {__block__}
     <!--登录模块js-->
-    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/accout/js/login.js?t={$Think.config.sys_config.lmx_version}"></script>
+    <script src="{:sp_get_asset_static_path()}/modules/admin/accout/js/login.js?t={:sp_get_static_version()}"></script>
 
 {/block}
 
