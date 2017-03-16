@@ -68,10 +68,10 @@ class Category extends Base {
             $result = $Categorymodel->save($data);
 
             if (empty($result)){
-                $this->error('菜单添加失败');
+                $this->error('文章分类添加失败');
             }
 
-            $this->success('菜单添加成功',Url::build('index'));
+            $this->success('文章分类添加成功',Url::build('index'));
 
         }else{
 
@@ -81,7 +81,7 @@ class Category extends Base {
             $pid = $this->request->param('pid/d');
 
             return $this->view->fetch('add',[
-                'title' => '添加分类',
+                'title' => '添加文章分类',
                 'pid' => $pid,
                 'lists' => $lists,
             ]);
@@ -178,7 +178,7 @@ class Category extends Base {
 
             $sub_cate = Categorymodel::get(['pid' => $id]);
             if ($sub_cate){
-                $this->error('此菜单下存在子菜单，不可删除！');
+                $this->error('此分类下存在子菜单，不可删除！');
             }
             if (Categorymodel::destroy($id)){
                 $this->success('删除成功！');
