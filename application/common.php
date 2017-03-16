@@ -11,6 +11,33 @@
 
 // 应用公共文件
 
+if (!function_exists('sp_get_asset_static_path')) {
+    /**
+     * 获取静态资源相对路径
+     * @param string $asset_url 文件的URL
+     * @return string
+     */
+    function sp_get_asset_static_path($asset_url = ''){
+
+        $filepath = config('sys_config.lmx_static_url').$asset_url;
+        return $filepath;
+    }
+}
+
+
+if (!function_exists('sp_get_static_version')) {
+    /**
+     * 获取静态资源版本号
+     * @param string $asset_url 文件的URL
+     * @return string
+     */
+    function sp_get_static_version($asset_url = ''){
+
+        $version = config('sys_config.lmx_version');
+        return $version;
+    }
+}
+
 if (!function_exists('sp_get_image_preview_url')) {
     /**
      * 获取文件相对路径
