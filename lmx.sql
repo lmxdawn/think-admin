@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-16 18:31:01
+Date: 2017-03-20 14:13:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -133,13 +133,13 @@ CREATE TABLE `lmx_auth_rule` (
   `update_time` int(11) DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='规则表';
 
 -- ----------------------------
 -- Records of lmx_auth_rule
 -- ----------------------------
 INSERT INTO `lmx_auth_rule` VALUES ('45', 'admin/Node/default', '菜单管理', '1', '1', '', '0', '1488007070', '1488007070');
-INSERT INTO `lmx_auth_rule` VALUES ('46', 'admin/System/siteConfig', '网站信息', '1', '1', '', '0', '1488043079', '1488043079');
+INSERT INTO `lmx_auth_rule` VALUES ('46', 'admin/System/siteConfig', '网站配置', '1', '1', '', '0', '1488043079', '1489038654');
 INSERT INTO `lmx_auth_rule` VALUES ('47', 'admin/System/updateSiteConfig', '更新配置', '1', '1', '', '0', '1488043231', '1488043231');
 INSERT INTO `lmx_auth_rule` VALUES ('48', 'admin/Backup/default', '备份管理', '1', '1', '', '0', '1488044935', '1488044935');
 INSERT INTO `lmx_auth_rule` VALUES ('31', 'admin/Node/index', '后台菜单', '1', '1', '', '0', '1487789220', '1487950594');
@@ -167,7 +167,24 @@ INSERT INTO `lmx_auth_rule` VALUES ('56', 'admin/Category/add', '添加分类', 
 INSERT INTO `lmx_auth_rule` VALUES ('57', 'admin/Category/edit', '编辑分类', '1', '1', '', '0', '1488690572', '1488690572');
 INSERT INTO `lmx_auth_rule` VALUES ('58', 'admin/Category/delete', '删除分类', '1', '1', '', '0', '1488690603', '1488690603');
 INSERT INTO `lmx_auth_rule` VALUES ('59', 'admin/Article/index', '文章管理', '1', '1', '', '0', '1488691790', '1488691790');
-INSERT INTO `lmx_auth_rule` VALUES ('60', 'admin/Tool/default', '扩展工具', '1', '1', '', '0', '1489547843', '1489547868');
+INSERT INTO `lmx_auth_rule` VALUES ('60', 'admin/System/setAppAndroidConfig', 'android配置', '1', '1', '', '0', '1489031361', '1489031361');
+INSERT INTO `lmx_auth_rule` VALUES ('61', 'admin/System/upAppAndroidConfig', '更新android配置', '1', '1', '', '0', '1489031431', '1489031431');
+INSERT INTO `lmx_auth_rule` VALUES ('62', 'admin/Tool/default', '扩展工具', '1', '1', '', '0', '1489476084', '1489547712');
+INSERT INTO `lmx_auth_rule` VALUES ('65', 'admin/Slide/default', '幻灯片', '1', '1', '', '0', '1489489395', '1489489395');
+INSERT INTO `lmx_auth_rule` VALUES ('66', 'admin/Slide/index', '幻灯片管理', '1', '1', '', '0', '1489489421', '1489489421');
+INSERT INTO `lmx_auth_rule` VALUES ('67', 'admin/SlideCat/index', '幻灯片分类', '1', '1', '', '0', '1489489448', '1489489448');
+INSERT INTO `lmx_auth_rule` VALUES ('68', 'admin/Slide/add', '添加幻灯片', '1', '1', '', '0', '1489546558', '1489546558');
+INSERT INTO `lmx_auth_rule` VALUES ('69', 'admin/Slide/edit', '编辑幻灯片', '1', '1', '', '0', '1489546580', '1489546580');
+INSERT INTO `lmx_auth_rule` VALUES ('70', 'admin/Slide/delete', '删除幻灯片', '1', '1', '', '0', '1489546608', '1489546608');
+INSERT INTO `lmx_auth_rule` VALUES ('71', 'admin/SlideCat/add', '添加幻灯片分类', '1', '1', '', '0', '1489546644', '1489546644');
+INSERT INTO `lmx_auth_rule` VALUES ('72', 'admin/SlideCat/edit', '编辑幻灯片分类', '1', '1', '', '0', '1489546670', '1489546670');
+INSERT INTO `lmx_auth_rule` VALUES ('73', 'admin/SlideCat/delete', '删除幻灯片分类', '1', '1', '', '0', '1489546702', '1489546702');
+INSERT INTO `lmx_auth_rule` VALUES ('74', 'admin/AppRecommend/index', '推荐应用管理', '1', '1', '', '0', '1489554977', '1489554977');
+INSERT INTO `lmx_auth_rule` VALUES ('75', 'admin/AppRecommend/add', '添加推荐应用', '1', '1', '', '0', '1489555011', '1489555011');
+INSERT INTO `lmx_auth_rule` VALUES ('76', 'admin/AppRecommend/edit', '编辑推荐应用', '1', '1', '', '0', '1489555035', '1489555035');
+INSERT INTO `lmx_auth_rule` VALUES ('77', 'admin/AppRecommend/delete', '删除推荐应用', '1', '1', '', '0', '1489555118', '1489555118');
+INSERT INTO `lmx_auth_rule` VALUES ('78', 'admin/AppRecommend/setShowCount', '客户端的显示数量', '1', '1', '', '0', '1489555243', '1489555256');
+INSERT INTO `lmx_auth_rule` VALUES ('79', 'admin/AppRecommend/setAppRecommendConf', '推荐应用配置', '1', '1', '', '0', '1489557777', '1489557777');
 
 -- ----------------------------
 -- Table structure for lmx_category
@@ -432,6 +449,6 @@ CREATE TABLE `lmx_users` (
 -- ----------------------------
 -- Records of lmx_users
 -- ----------------------------
-INSERT INTO `lmx_users` VALUES ('2', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'admin', 'lmxdawn@gmail.com', 'kk', null, '0', '2000-01-01', null, '127.0.0.1', '1489547363', '1487868050', '', '1', '0', '1', '0', '', null);
+INSERT INTO `lmx_users` VALUES ('2', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'admin', 'lmxdawn@gmail.com', 'kk', null, '0', '2000-01-01', null, '127.0.0.1', '1489974938', '1487868050', '', '1', '0', '1', '0', '', null);
 INSERT INTO `lmx_users` VALUES ('5', 'demo', '6c5ac7b4d3bd3311f033f971196cfa75', 'demo', '862253272@qq.com', '123', null, '1', '2000-01-01', '', '127.0.0.1', '1488169490', '1487966028', '', '1', '0', '1', '0', '', null);
 INSERT INTO `lmx_users` VALUES ('6', 'demo1', '655e9d2a52f932bdde5ba3e0c544a6b9', 'demo1', '', '', null, '0', '2000-01-01', null, null, '0', '1487966314', '', '1', '0', '1', '0', '', null);
