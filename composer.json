@@ -27,13 +27,7 @@
         "ext-gd": "*",
         "ext-gettext": "*",
         "ext-intl": "*",
-        "ext-mbstring": "*",
-        "ext-pcntl": "*",
-        "ext-shmop": "*",
-        "ext-soap": "*",
-        "ext-PDO": "*",
-        "ext-xmlrpc": "*",
-        "ext-xsl": "*"
+        "ext-mbstring": "*"
     },
     "extra": {
         "think-path": "thinkphp"
