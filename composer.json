@@ -33,7 +33,7 @@
         "ext-soap": "*",
         "ext-PDO": "*",
         "ext-xmlrpc": "*",
-        "ext-xsl": "*",
+        "ext-xsl": "*"
     },
     "extra": {
         "think-path": "thinkphp"
