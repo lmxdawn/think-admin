@@ -21,7 +21,20 @@
         "topthink/think-captcha": "dev-master",
         "lmxdawn/think-auth": "dev-master",
         "lmxdawn/think-tree": "dev-master",
-        "ext-gd": "*"
+        "ext-bcmath": "*",
+        "ext-calendar": "*",
+        "ext-exif": "*",
+        "ext-gd": "*",
+        "ext-gettext": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-pcntl": "*",
+        "ext-shmop": "*",
+        "ext-soap": "*",
+        "ext-PDO": "*",
+        "ext-xmlrpc": "*",
+        "ext-xsl": "*",
+        "ext-sqlite3": "*"
     },
     "extra": {
         "think-path": "thinkphp"
