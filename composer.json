@@ -34,7 +34,6 @@
         "ext-PDO": "*",
         "ext-xmlrpc": "*",
         "ext-xsl": "*",
-        "ext-sqlite3": "*"
     },
     "extra": {
         "think-path": "thinkphp"
