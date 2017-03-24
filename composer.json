@@ -16,7 +16,6 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
         "topthink/framework": "^5.0",
         "topthink/think-captcha": "dev-master",
         "lmxdawn/think-auth": "dev-master",
