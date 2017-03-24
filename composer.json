@@ -21,9 +21,9 @@
         "topthink/think-captcha": "dev-master",
         "lmxdawn/think-auth": "dev-master",
         "lmxdawn/think-tree": "dev-master",
-        "ext-gd": "dev-master",
-        "ext-gettext": "dev-master",
-        "ext-mbstring": "dev-master"
+        "ext-gd": "*",
+        "ext-gettext": "*",
+        "ext-mbstring": "*"
     },
     "extra": {
         "think-path": "thinkphp"
