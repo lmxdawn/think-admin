@@ -21,12 +21,8 @@
         "topthink/think-captcha": "dev-master",
         "lmxdawn/think-auth": "dev-master",
         "lmxdawn/think-tree": "dev-master",
-        "ext-bcmath": "*",
-        "ext-calendar": "*",
-        "ext-exif": "*",
         "ext-gd": "*",
         "ext-gettext": "*",
-        "ext-intl": "*",
         "ext-mbstring": "*"
     },
     "extra": {
