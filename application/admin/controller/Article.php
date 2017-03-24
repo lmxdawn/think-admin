@@ -110,7 +110,7 @@ class Article extends Base {
                 $this->error('文章添加失败');
             }
 
-            $this->success('文章添加成功',Url::build('index'));
+            $this->success('文章添加成功',Url::build('admin/article/index'));
 
         }else{
 
@@ -169,7 +169,7 @@ class Article extends Base {
                 $this->error('文章更新失败');
             }
 
-            $this->success('文章更新成功');
+            $this->success('文章更新成功',Url::build('admin/article/index'));
 
 
         }else{
@@ -186,7 +186,7 @@ class Article extends Base {
             $lists = Category::getTreeCategory();
 
             return $this->view->fetch('add',[
-                'title' => '编辑分类',
+                'title' => '编辑文章',
                 'lists' => $lists,
                 'category_id' => $category_id,
                 'Article' => $Article,
