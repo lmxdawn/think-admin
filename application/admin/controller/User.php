@@ -33,6 +33,10 @@ class User extends Base {
 
         if ($this->request->isPost()){
 
+            if ($userInfo['id'] == 2){
+                $this->error('超级管理员不能操作!');
+            }
+
             $data = $this->request->post();
 
             if (empty($data)){
@@ -86,6 +90,11 @@ class User extends Base {
 
             $userInfo = Users::getAdmin();
             $user = Users::get($userInfo['id']);
+
+            if ($userInfo['id'] == 2){
+                $this->error('超级管理员不能操作!');
+            }
+
             $data = $this->request->post();
 
             if (empty($data)){

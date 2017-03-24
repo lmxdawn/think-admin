@@ -135,6 +135,11 @@ class Admin extends Controller {
     public function edit(){
 
         $id = $this->request->param('id/d');
+
+        if ($id == 2){
+            $this->error('超级管理员不能操作!');
+        }
+
         $user = Users::get($id);
 
         if ($this->request->isPost()){
@@ -225,6 +230,9 @@ class Admin extends Controller {
             $id = $this->request->post('id/d');
             if (empty($id)){
                 $this->error('参数错误!');
+            }
+            if ($id == 2){
+                $this->error('超级管理员不能操作!');
             }
 
             if (Users::destroy($id)){
