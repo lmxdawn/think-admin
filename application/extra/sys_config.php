@@ -12,7 +12,7 @@ return [
     // +----------------------------------------------------------------------
 
 
-    'lmx_static_url'        =>      "/public/static" //静态文件路径
+    'lmx_static_url'        =>      "/static" //静态文件路径
     ,'lmx_upload_url'        =>      "/public/uploads/" //上传文件的根地址
     ,'lmx_static_debug'       =>      false //静态文件的调试模式
     ,'lmx_version'          =>       '2017010853' // 版本号
