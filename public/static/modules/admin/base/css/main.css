@@ -131,12 +131,7 @@
     padding: 20px 20px 150px;
 }
 
-.page{
-}
-
 .page ul{
-    color: #036cb4;
-    font-family: "Helvetica Neue",STHeiti,"Microsoft YaHei",Helvetica,Arial,sans-serif;
     font-size: 14px;
     height: auto;
     overflow: hidden;
@@ -146,9 +141,20 @@
 
 .page ul li{
     display: inline;
-    margin: 3px 0;
-    padding: 5px 12px;
+    margin: 3px 1px;
     text-align: center;
-    border: 1px solid #e6e6e6;
-    color: #999;
+}
+.page ul li a,.page ul li span{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 0;
+    padding: 7px 15px;
+}
+.page ul li a{
+    color: #1abc9c;
+    text-decoration: none;
+}
+.page ul li a:hover{
+    background-color: #f5f5f5;
 }
