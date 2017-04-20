@@ -22,185 +22,184 @@
 
 
 
-    <div class="lmx">
+<div class="lmx">
 
-        <div id="loading"><i class="loadingicon"></i><span>正在加载...</span></div>
+    <div id="loading"><i class="loadingicon"></i><span>正在加载...</span></div>
 
 
-        <!--头部 start-->
-        <div class="lmx-header" id="lmx-header">
-            <div class="container-fluid">
-                <a href="" target="_blank" class="brand">
-                    <small style="font-size: 85%;">{$Think.config.sys_config.lmx_title ?? '后台管理'}</small>
-                </a>
-                <div class="pull-left nav_shortcuts">
-                    {volist name='quick_menu' id='vo'}
-                        <a class="layui-btn layui-btn-small {$vo.type}" href="javascript:openapp('{$vo.url|Url=###}','{$vo.id}','{$vo.title}','{$vo.icon}')"  title="{$vo.title}"><i class="fa {$vo.icon}"></i></a>
-                    {/volist}
-                </div>
+    <!--头部 start-->
+    <div class="lmx-header" id="lmx-header">
+        <div class="container-fluid">
+            <a href="/ThinkCMFX/index.php?g=admin&amp;m=index&amp;a=index" class="brand">
+                <small style="font-size: 85%;">双开APP后台管理中心</small>
+            </a>
+            <div class="pull-left nav_shortcuts">
+                {volist name='quick_menu' id='vo'}
+                <a class="layui-btn layui-btn-small {$vo.type}" href="javascript:openapp('{$vo.url|Url=###}','{$vo.id}','{$vo.title}','{$vo.icon}')"  title="{$vo.title}"><i class="fa {$vo.icon}"></i></a>
+                {/volist}
+            </div>
 
-                <ul class="nav simplewind-nav pull-right">
-                    <li class="light-blue">
-                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="https://demo.thinkcmf.com/data/upload/avatar/5865f6b3e7411.jpg" alt="admin" height="30" width="30">
-                            <span class="user-info">欢迎, {$Think.session.admin_user.user_name}</span>
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-                            <li><a href="javascript:openapp('{:Url(\'admin/system/siteconfig\')}','82','网站信息','fa-circle-o');"><i class="fa fa-cog"></i> 网站信息</a></li>
-                            <li><a href="javascript:openapp('{:Url(\'admin/user/edit\')}','90','修改信息','fa-circle-o');"><i class="fa fa-user"></i> 修改信息</a></li>
-                            <li><a href="javascript:openapp('{:Url(\'admin/user/pwd\')}','91','修改密码','fa-circle-o');"><i class="fa fa-lock"></i> 修改密码</a></li>
-                            <li><a href="{:Url('accout/logout')}"><i class="fa fa-sign-out"></i> 退出</a></li>
+            <ul class="nav simplewind-nav pull-right">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="https://demo.thinkcmf.com/data/upload/avatar/5865f6b3e7411.jpg" alt="admin" height="30" width="30">
+                        <span class="user-info">欢迎, {$Think.session.admin_user.user_name}</span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                        <li><a href="javascript:openapp('{:Url(\'admin/system/siteconfig\')}','82','网站信息','fa-circle-o');"><i class="fa fa-cog"></i> 网站信息</a></li>
+                        <li><a href="javascript:openapp('{:Url(\'admin/user/edit\')}','90','修改信息','fa-circle-o');"><i class="fa fa-user"></i> 修改信息</a></li>
+                        <li><a href="javascript:openapp('{:Url(\'admin/user/pwd\')}','91','修改密码','fa-circle-o');"><i class="fa fa-lock"></i> 修改密码</a></li>
+                        <li><a href="{:Url('accout/logout')}"><i class="fa fa-sign-out"></i> 退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+
+
+    </div>
+    <!--头部 end-->
+
+    <!--左侧 start-->
+    <div class="lmx-left" id="lmx-left">
+
+        <!--<div class="lmx-left-manual">-->
+        <!--<span class="lmx-left-manual-switch">-->
+        <!--<i class="fa fa-angle-double-left" id="close" title="关闭侧边栏"></i>-->
+        <!--</span>-->
+        <!--</div>-->
+
+        <div class="lmx-left-nav">
+
+            <!--导航栏顶部折叠 start-->
+            <div class="lmx-left-fold" id="lmx-left-fold">
+                <i class="fa fa-reorder"></i>
+            </div>
+            <!--导航栏顶部折叠 end-->
+
+            <!--左侧导航 start-->
+            <div class="lmx-left-nav-content">
+                <aside class="main-sidebar">
+                    <section  class="sidebar">
+                        <ul class="sidebar-menu">
+                            {volist name='menu_lists' id='vo'}
+                            <li class="treeview">
+                                {php}$vo['url'] = $vo['app'].'/'.$vo['model'].'/'.$vo['action']{/php}
+                                <a {if condition="empty($vo._child)"}href="javascript:openapp('{$vo.url|Url=###}','{$vo.id}','{$vo.title}','{$vo.icon}')" {else /} href="#" {/if}>
+                                <i class="fa {$vo.icon ?? 'fa-circle-o'}"></i>
+                                <span>{$vo.title}</span>
+                                {if condition="!empty($vo._child)"}
+                                <i class="fa fa-angle-right pull-right"></i>
+                                {/if}
+                                </a>
+                                {if condition="!empty($vo._child)"}
+                                <ul class="treeview-menu">
+                                    {volist name='vo._child' id='v1'}
+                                    <li>
+                                        {php}$v1['url'] = $v1['app'].'/'.$v1['model'].'/'.$v1['action']{/php}
+                                        <a  level="{$v1.level}" style="padding-left: 35px;" {if condition="empty($v1._child)"}href="javascript:openapp('{$v1.url|Url=###}','{$v1.id}','{$v1.title}','{$v1.icon}')" {else /} href="#" {/if}>
+                                        <i class="fa {$v1.icon ?? 'fa-circle-o'}"></i>
+                                        <span>{$v1.title}</span>
+                                        {if condition="!empty($v1._child)"}
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                        {/if}
+                                        </a>
+                                        {if condition="!empty($v1._child)"}
+                                        <ul class="treeview-menu">
+                                            {volist name='v1._child' id='v2'}
+                                            <li>
+                                                {php}$v2['url'] = $v2['app'].'/'.$v2['model'].'/'.$v2['action']{/php}
+                                                <a level="{$v2.level}" style="padding-left: 60px;" {if condition="empty($v2._child)"}href="javascript:openapp('{$v2.url|Url=###}','{$v2.id}','{$v2.title}','{$v2.icon}')" {else /} href="#" {/if}>
+                                                <i class="fa {$v2.icon ?? 'fa-circle-o'}"></i>
+                                                <span>{$v2.title}</span>
+                                                </a>
+                                            </li>
+                                            {/volist}
+                                        </ul>
+                                        {/if}
+                                    </li>
+                                    {/volist}
+                                </ul>
+                                {/if}
+                            </li>
+                            {/volist}
                         </ul>
+                    </section>
+                </aside>
+            </div>
+            <!--左侧导航 end-->
+        </div>
+
+    </div>
+    <!--左侧 end-->
+
+
+    <!--内容部分 start-->
+    <div class="lmx-content" id="lmx-content">
+
+        <!--内容主体 start-->
+
+        <div class="lmx-breadcrumbs">
+
+            <!--向左按钮-->
+            <a id="task-pre" class="lmx-task-changebt">←</a>
+
+            <!--导航 start-->
+            <div class="lmx-nav" id="lmx-nav" style="max-width: 834px;">
+
+                <ul class="lmx-tab" id="lmx-tab" style="width: 800px;">
+
+                    <li class="lmx-tabitem current" app-id="0" app-url="{:url('main/index')}" app-name="首页">
+                        <i class="fa fa-desktop"></i>
+                        <span class="lmx-tabitem-text" title="后台首页">后台首页</span>
                     </li>
+
                 </ul>
 
             </div>
+            <!--导航 end-->
 
+            <a id="task-next" class="lmx-task-changebt">→</a>
+
+            <div id="right_tools_wrapper">
+                <span id="refresh_wrapper" title="刷新页面" ><i class="fa fa-refresh right_tool_icon"></i></span>
+            </div>
 
 
         </div>
-        <!--头部 end-->
 
-        <!--左侧 start-->
-        <div class="lmx-left" id="lmx-left">
-
-            <!--<div class="lmx-left-manual">-->
-                <!--<span class="lmx-left-manual-switch">-->
-                    <!--<i class="fa fa-angle-double-left" id="close" title="关闭侧边栏"></i>-->
-                <!--</span>-->
-            <!--</div>-->
-
-            <div class="lmx-left-nav">
-
-                <!--导航栏顶部折叠 start-->
-                <div class="lmx-left-fold" id="lmx-left-fold">
-                    <i class="fa fa-reorder"></i>
-                </div>
-                <!--导航栏顶部折叠 end-->
-
-                <!--左侧导航 start-->
-                <div class="lmx-left-nav-content">
-                    <aside class="main-sidebar">
-                        <section  class="sidebar">
-                            <ul class="sidebar-menu">
-                                {volist name='menu_lists' id='vo'}
-                                <li class="treeview">
-                                    {php}$vo['url'] = $vo['app'].'/'.$vo['model'].'/'.$vo['action']{/php}
-                                    <a {if condition="empty($vo._child)"}href="javascript:openapp('{$vo.url|Url=###}','{$vo.id}','{$vo.title}','{$vo.icon}')" {else /} href="#" {/if}>
-                                        <i class="fa {$vo.icon ?? 'fa-circle-o'}"></i>
-                                        <span>{$vo.title}</span>
-                                        {if condition="!empty($vo._child)"}
-                                            <i class="fa fa-angle-right pull-right"></i>
-                                        {/if}
-                                    </a>
-                                    {if condition="!empty($vo._child)"}
-                                    <ul class="treeview-menu">
-                                        {volist name='vo._child' id='v1'}
-                                        <li>
-                                            {php}$v1['url'] = $v1['app'].'/'.$v1['model'].'/'.$v1['action']{/php}
-                                            <a  level="{$v1.level}" style="padding-left: 35px;" {if condition="empty($v1._child)"}href="javascript:openapp('{$v1.url|Url=###}','{$v1.id}','{$v1.title}','{$v1.icon}')" {else /} href="#" {/if}>
-                                                <i class="fa {$v1.icon ?? 'fa-circle-o'}"></i>
-                                                <span>{$v1.title}</span>
-                                                {if condition="!empty($v1._child)"}
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                                {/if}
-                                            </a>
-                                            {if condition="!empty($v1._child)"}
-                                            <ul class="treeview-menu">
-                                                {volist name='v1._child' id='v2'}
-                                                <li>
-                                                    {php}$v2['url'] = $v2['app'].'/'.$v2['model'].'/'.$v2['action']{/php}
-                                                    <a level="{$v2.level}" style="padding-left: 60px;" {if condition="empty($v2._child)"}href="javascript:openapp('{$v2.url|Url=###}','{$v2.id}','{$v2.title}','{$v2.icon}')" {else /} href="#" {/if}>
-                                                        <i class="fa {$v2.icon ?? 'fa-circle-o'}"></i>
-                                                        <span>{$v2.title}</span>
-                                                    </a>
-                                                </li>
-                                                {/volist}
-                                            </ul>
-                                            {/if}
-                                        </li>
-                                        {/volist}
-                                    </ul>
-                                    {/if}
-                                </li>
-                                {/volist}
-                            </ul>
-                        </section>
-                    </aside>
-                </div>
-                <!--左侧导航 end-->
-            </div>
-
+        <!--主体-->
+        <div class="lmx-main" id="lmx-main">
+            <!--<div class="loadSpin" id="loadSpin">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>-->
+            <!--<iframe src="{:url('main/index')}" style="width: 100%; height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>-->
         </div>
-        <!--左侧 end-->
 
 
-        <!--内容部分 start-->
-        <div class="lmx-content" id="lmx-content">
-
-            <!--内容主体 start-->
-
-            <div class="lmx-breadcrumbs">
-
-                <!--向左按钮-->
-                <a id="task-pre" class="lmx-task-changebt">←</a>
-
-                <!--导航 start-->
-                <div class="lmx-nav" id="lmx-nav" style="max-width: 834px;">
-
-                    <ul class="lmx-tab" id="lmx-tab" style="width: 800px;">
-
-                        <li class="lmx-tabitem current" app-id="0" app-url="{:url('main/index')}" app-name="首页">
-                            <i class="fa fa-desktop"></i>
-                            <span class="lmx-tabitem-text" title="后台首页">后台首页</span>
-                        </li>
-
-                    </ul>
-
-                </div>
-                <!--导航 end-->
-
-                <a id="task-next" class="lmx-task-changebt">→</a>
-
-                <div id="right_tools_wrapper">
-                    <span id="refresh_wrapper" title="刷新页面" ><i class="fa fa-refresh right_tool_icon"></i></span>
-                </div>
+        <!--内容主体 end-->
 
 
-            </div>
-
-            <!--主体-->
-            <div class="lmx-main" id="lmx-main">
-                <!--<div class="loadSpin" id="loadSpin">
-                    <i class="fa fa-spinner fa-spin"></i>
-                </div>-->
-                <!--<iframe src="{:url('main/index')}" style="width: 100%; height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>-->
-            </div>
-
-
-            <!--内容主体 end-->
-
-            <div class="lmx-left-manual">
+        <div class="lmx-left-manual">
                 <span class="lmx-left-manual-switch">
                     <i class="fa fa-angle-double-left" id="close" title="关闭侧边栏"></i>
                 </span>
-            </div>
-
         </div>
-        <!--内容部分 end-->
 
     </div>
+    <!--内容部分 end-->
+
+</div>
 
 
 
-    <!--公共js-->
-    {include file="footer" /}
+<!--公共js-->
+{include file="footer" /}
 
-    <!--JS引用-->
-    <script src="{:sp_get_asset_static_path()}/modules/admin/index/js/main.js?t={:sp_get_static_version()}"></script>
-
-
+<!--JS引用-->
+<script src="{:sp_get_asset_static_path()}/modules/admin/index/js/main.js?t={:sp_get_static_version()}"></script>
 
 </body>
 
