@@ -99,7 +99,7 @@
     margin-right: 10px;
 }
 
-    /*列表*/
+/*列表*/
 .lmx-table{
 
 }
@@ -113,6 +113,28 @@
     overflow-x: hidden;
     padding-bottom: 0;
 }
+
+
+/*表格的节点收缩*/
+.lmx-tree{cursor: pointer}
+.lmx-tree-hide{display: none}
+.lmx-tree-catet{font-size: 18px;}
+.lmx-tree-order{
+    margin-bottom: 0;
+    padding: 3px;
+    width: 40px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;border-radius: 4px;
+    color: #555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
 
 .info-header{
     border-bottom: 1px solid #eeeff1;

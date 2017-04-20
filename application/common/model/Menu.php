@@ -67,7 +67,7 @@ class Menu extends Model
     public static function getMenuList($where = []){
         $lists = self::where($where)
             ->field(
-                ['id','parent_id','parent_name','app','model','action','param','type','status','title','icon','listorder','create_time','update_time','is_update']
+                ['id','parent_id','app','model','action','param','type','status','title','icon','listorder','create_time','update_time','is_update']
             )
             ->order(['listorder' => 'ASC','id' => 'ASC'])
             ->select();
@@ -116,8 +116,6 @@ class Menu extends Model
 
 
         }
-
-        //dump($temp);exit;
 
 
         //创建树节点模型

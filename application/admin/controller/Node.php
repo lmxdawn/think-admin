@@ -59,11 +59,9 @@ class Node extends Base {
 
             // 菜单模型
             $Menu = Menu::getInstance();
+
             $data['is_update'] = (!empty($data['is_update']) && $data['is_update'] == 'on') ? 1 : 0;
-            $parent = explode(',',$data['parent']);
-            unset($data['parent']);
-            $data['parent_id'] = !empty($parent[0]) ? $parent[0] : 0;
-            $data['parent_name'] = !empty($parent[1]) ? $parent[1] : '';
+            $data['parent_id'] = !empty($data['parent_id']) ? $data['parent_id'] : 0;
 
             $result = $Menu->save($data);
 
@@ -144,10 +142,7 @@ class Node extends Base {
             }
 
             $data['is_update'] = (!empty($data['is_update']) && $data['is_update'] == 'on') ? 1 : 0;
-            $parent = explode(',',$data['parent']);
-            unset($data['parent']);
-            $data['parent_id'] = !empty($parent[0]) ? $parent[0] : 0;
-            $data['parent_name'] = !empty($parent[1]) ? $parent[1] : '';
+            $data['parent_id'] = !empty($data['parent_id']) ? $data['parent_id'] : 0;
 
             if ($Menu->id == $data['parent_id']){
                 $this->result([],-1,'不能把自身作为父级菜单','json');

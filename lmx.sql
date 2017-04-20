@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-20 14:13:12
+Date: 2017-04-20 11:38:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -217,7 +217,6 @@ DROP TABLE IF EXISTS `lmx_menu`;
 CREATE TABLE `lmx_menu` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `parent_id` smallint(6) unsigned DEFAULT '0' COMMENT '父级ID',
-  `parent_name` varchar(50) DEFAULT NULL COMMENT '父级菜单名称',
   `app` char(20) DEFAULT NULL COMMENT '应用名称',
   `model` char(20) DEFAULT NULL COMMENT '控制器',
   `action` char(20) DEFAULT NULL COMMENT '操作名称',
@@ -241,50 +240,50 @@ CREATE TABLE `lmx_menu` (
 -- ----------------------------
 -- Records of lmx_menu
 -- ----------------------------
-INSERT INTO `lmx_menu` VALUES ('66', '0', '顶级', 'admin', 'Node', 'default', '', '1', '1', '菜单管理', 'fa-list', '', '1', '1487778496', '1488007070', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('67', '66', '菜单管理', 'admin', 'Node', 'index', '', '1', '1', '后台菜单', 'fa-circle-o', '', '2', '1487779790', '1487950594', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('68', '67', '后台菜单', 'admin', 'Node', 'add', '', '1', '0', '添加菜单', 'fa-circle-o', '', '3', '1487779957', '1487789234', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('69', '67', '后台菜单', 'admin', 'Node', 'edit', '', '1', '0', '编辑菜单', 'fa-circle-o', '', '4', '1487780038', '1487789255', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('70', '67', '后台菜单', 'admin', 'Node', 'delete', '', '1', '0', '删除菜单', 'fa-circle-o', '', '5', '1487780088', '1487789246', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('71', '0', '顶级', 'admin', 'Setting', 'default', '', '1', '1', '设置', 'fa-cogs', '', '0', '1487951321', '1487951321', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('72', '0', '顶级', 'admin', 'Users', 'default', '', '1', '1', '用户管理', 'fa-group', '', '0', '1487951847', '1487952237', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('73', '72', '用户管理', 'admin', 'Users', 'default', '', '1', '1', '用户组', 'fa-circle-o', '', '1', '1487954607', '1487999511', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('74', '73', '用户组', 'admin', 'Users', 'index', '', '1', '1', '本站用户', 'fa-user-o', '', '1', '1487954667', '1487999501', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('75', '72', '用户管理', 'admin', 'Admin', 'default', '', '1', '1', '管理组', 'fa-circle-o', '', '2', '1487954732', '1487954732', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('76', '75', '管理组', 'admin', 'Admin', 'index', '', '1', '1', '管理员', 'fa-user-circle-o', '', '2', '1487957700', '1487999532', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('77', '76', '管理员', 'admin', 'Admin', 'add', '', '1', '0', '添加管理员', 'fa-circle-o', '', '1', '1487966778', '1487966778', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('78', '76', '管理员', 'admin', 'Admin', 'edit', '', '1', '0', '编辑管理员', 'fa-circle-o', '', '2', '1487966821', '1487966821', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('79', '76', '管理员', 'admin', 'Admin', 'delete', '', '1', '0', '删除管理员', 'fa-circle-o', '', '3', '1487966874', '1487966874', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('80', '75', '管理组', 'admin', 'Rbac', 'index', '', '1', '1', '角色管理', 'fa-venus-mars', '', '1', '1487997838', '1487999640', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('81', '71', '设置', 'admin', 'User', 'default', '', '0', '1', '个人信息', 'fa-circle-o', '', '1', '1488042992', '1488043017', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('82', '71', '设置', 'admin', 'System', 'siteConfig', '', '1', '1', '网站配置', 'fa-circle-o', '', '2', '1488043079', '1489038654', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('83', '82', '网站信息', 'admin', 'System', 'updateSiteConfig', '', '1', '0', '更新配置', 'fa-circle-o', '', '1', '1488043231', '1488043231', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('84', '71', '设置', 'admin', 'Backup', 'default', '', '1', '1', '备份管理', 'fa-circle-o', '', '3', '1488044935', '1488044935', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('85', '84', '备份管理', 'admin', 'Backup', 'index', '', '1', '1', '数据备份', 'fa-circle-o', '', '1', '1488044981', '1488044981', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('86', '84', '备份管理', 'admin', 'Backup', 'restore', '', '1', '1', '数据列表', 'fa-circle-o', '', '2', '1488045030', '1488052426', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('87', '84', '备份管理', 'admin', 'Backup', 'import', '', '1', '0', '数据恢复', 'fa-circle-o', '', '3', '1488052552', '1488052552', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('88', '84', '备份管理', 'admin', 'Backup', 'del_backup', '', '1', '0', '数据删除', 'fa-circle-o', '', '4', '1488052594', '1488052594', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('89', '84', '备份管理', 'admin', 'Backup', 'download', '', '1', '0', '数据下载', 'fa-circle-o', '', '5', '1488052624', '1488052624', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('90', '81', '个人信息', 'admin', 'User', 'edit', '', '0', '1', '修改信息', 'fa-circle-o', '', '1', '1488058039', '1488058039', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('91', '81', '个人信息', 'admin', 'User', 'pwd', '', '0', '1', '修改密码', 'fa-circle-o', '', '2', '1488058064', '1488058064', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('92', '0', '顶级', 'admin', 'Content', 'default', '', '1', '1', '内容管理', 'fa-file-text', '', '4', '1488597861', '1488597861', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('93', '92', '内容管理', 'admin', 'Category', 'index', '', '1', '1', '分类管理', 'fa-circle-o', '', '1', '1488597987', '1488597987', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('94', '93', '分类管理', 'admin', 'Category', 'add', '', '1', '0', '添加分类', 'fa-circle-o', '', '1', '1488690546', '1488690546', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('95', '93', '分类管理', 'admin', 'Category', 'edit', '', '1', '0', '编辑分类', 'fa-circle-o', '', '2', '1488690572', '1488690572', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('96', '93', '分类管理', 'admin', 'Category', 'delete', '', '1', '0', '删除分类', 'fa-circle-o', '', '3', '1488690603', '1488690603', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('97', '92', '内容管理', 'admin', 'Article', 'index', '', '1', '1', '文章管理', 'fa-circle-o', '', '2', '1488691790', '1488691790', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('98', '71', '设置', 'admin', 'System', 'setAppAndroidConfig', '', '1', '1', 'android配置', 'fa-circle-o', '', '2', '1489031361', '1489031361', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('99', '98', 'android配置', 'admin', 'System', 'upAppAndroidConfig', '', '1', '0', '更新android配置', 'fa-circle-o', '', '1', '1489031431', '1489031431', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('100', '0', '顶级', 'admin', 'Tool', 'default', '', '1', '1', '扩展工具', 'fa-cloud', '', '4', '1489476084', '1489547868', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('103', '100', '扩展工具', 'admin', 'Slide', 'default', '', '1', '1', '幻灯片', 'fa-circle-o', '', '1', '1489489395', '1489489395', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('104', '103', '幻灯片', 'admin', 'Slide', 'index', '', '1', '1', '幻灯片管理', 'fa-circle-o', '', '1', '1489489421', '1489489421', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('105', '103', '幻灯片', 'admin', 'SlideCat', 'index', '', '1', '1', '幻灯片分类', 'fa-circle-o', '', '2', '1489489448', '1489489448', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('106', '104', '幻灯片管理', 'admin', 'Slide', 'add', '', '1', '0', '添加幻灯片', 'fa-circle-o', '', '1', '1489546558', '1489546558', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('107', '104', '幻灯片管理', 'admin', 'Slide', 'edit', '', '1', '0', '编辑幻灯片', 'fa-circle-o', '', '2', '1489546580', '1489546580', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('108', '104', '幻灯片管理', 'admin', 'Slide', 'delete', '', '1', '0', '删除幻灯片', 'fa-circle-o', '', '3', '1489546608', '1489546608', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('109', '105', '幻灯片分类', 'admin', 'SlideCat', 'add', '', '1', '0', '添加幻灯片分类', 'fa-circle-o', '', '1', '1489546644', '1489546644', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('110', '105', '幻灯片分类', 'admin', 'SlideCat', 'edit', '', '1', '0', '编辑幻灯片分类', 'fa-circle-o', '', '2', '1489546670', '1489546670', '0', '0');
-INSERT INTO `lmx_menu` VALUES ('111', '105', '幻灯片分类', 'admin', 'SlideCat', 'delete', '', '1', '0', '删除幻灯片分类', 'fa-circle-o', '', '3', '1489546702', '1489546702', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('66', '0', 'admin', 'Node', 'default', '', '1', '1', '菜单管理', 'fa-list', '', '1', '1487778496', '1488007070', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('67', '66', 'admin', 'Node', 'index', '', '1', '1', '后台菜单', 'fa-circle-o', '', '2', '1487779790', '1487950594', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('68', '67', 'admin', 'Node', 'add', '', '1', '0', '添加菜单', 'fa-circle-o', '', '3', '1487779957', '1487789234', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('69', '67', 'admin', 'Node', 'edit', '', '1', '0', '编辑菜单', 'fa-circle-o', '', '4', '1487780038', '1487789255', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('70', '67', 'admin', 'Node', 'delete', '', '1', '0', '删除菜单', 'fa-circle-o', '', '5', '1487780088', '1487789246', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('71', '0', 'admin', 'Setting', 'default', '', '1', '1', '设置', 'fa-cogs', '', '0', '1487951321', '1487951321', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('72', '0', 'admin', 'Users', 'default', '', '1', '1', '用户管理', 'fa-group', '', '0', '1487951847', '1487952237', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('73', '72', 'admin', 'Users', 'default', '', '1', '1', '用户组', 'fa-circle-o', '', '1', '1487954607', '1487999511', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('74', '73', 'admin', 'Users', 'index', '', '1', '1', '本站用户', 'fa-user-o', '', '1', '1487954667', '1487999501', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('75', '72', 'admin', 'Admin', 'default', '', '1', '1', '管理组', 'fa-circle-o', '', '2', '1487954732', '1487954732', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('76', '75', 'admin', 'Admin', 'index', '', '1', '1', '管理员', 'fa-user-circle-o', '', '2', '1487957700', '1487999532', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('77', '76', 'admin', 'Admin', 'add', '', '1', '0', '添加管理员', 'fa-circle-o', '', '1', '1487966778', '1487966778', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('78', '76', 'admin', 'Admin', 'edit', '', '1', '0', '编辑管理员', 'fa-circle-o', '', '2', '1487966821', '1487966821', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('79', '76', 'admin', 'Admin', 'delete', '', '1', '0', '删除管理员', 'fa-circle-o', '', '3', '1487966874', '1487966874', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('80', '75', 'admin', 'Rbac', 'index', '', '1', '1', '角色管理', 'fa-venus-mars', '', '1', '1487997838', '1487999640', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('81', '71', 'admin', 'User', 'default', '', '0', '1', '个人信息', 'fa-circle-o', '', '1', '1488042992', '1488043017', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('82', '71', 'admin', 'System', 'siteConfig', '', '1', '1', '网站配置', 'fa-circle-o', '', '2', '1488043079', '1489038654', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('83', '82', 'admin', 'System', 'updateSiteConfig', '', '1', '0', '更新配置', 'fa-circle-o', '', '1', '1488043231', '1488043231', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('84', '71', 'admin', 'Backup', 'default', '', '1', '1', '备份管理', 'fa-circle-o', '', '3', '1488044935', '1488044935', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('85', '84', 'admin', 'Backup', 'index', '', '1', '1', '数据备份', 'fa-circle-o', '', '1', '1488044981', '1488044981', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('86', '84', 'admin', 'Backup', 'restore', '', '1', '1', '数据列表', 'fa-circle-o', '', '2', '1488045030', '1488052426', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('87', '84', 'admin', 'Backup', 'import', '', '1', '0', '数据恢复', 'fa-circle-o', '', '3', '1488052552', '1488052552', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('88', '84', 'admin', 'Backup', 'del_backup', '', '1', '0', '数据删除', 'fa-circle-o', '', '4', '1488052594', '1488052594', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('89', '84', 'admin', 'Backup', 'download', '', '1', '0', '数据下载', 'fa-circle-o', '', '5', '1488052624', '1488052624', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('90', '81', 'admin', 'User', 'edit', '', '0', '1', '修改信息', 'fa-circle-o', '', '1', '1488058039', '1488058039', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('91', '81', 'admin', 'User', 'pwd', '', '0', '1', '修改密码', 'fa-circle-o', '', '2', '1488058064', '1488058064', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('92', '0', 'admin', 'Content', 'default', '', '1', '1', '内容管理', 'fa-file-text', '', '4', '1488597861', '1488597861', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('93', '92', 'admin', 'Category', 'index', '', '1', '1', '分类管理', 'fa-circle-o', '', '1', '1488597987', '1488597987', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('94', '93', 'admin', 'Category', 'add', '', '1', '0', '添加分类', 'fa-circle-o', '', '1', '1488690546', '1488690546', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('95', '93', 'admin', 'Category', 'edit', '', '1', '0', '编辑分类', 'fa-circle-o', '', '2', '1488690572', '1488690572', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('96', '93', 'admin', 'Category', 'delete', '', '1', '0', '删除分类', 'fa-circle-o', '', '3', '1488690603', '1488690603', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('97', '92', 'admin', 'Article', 'index', '', '1', '1', '文章管理', 'fa-circle-o', '', '2', '1488691790', '1488691790', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('98', '71', 'admin', 'System', 'setAppAndroidConfig', '', '1', '1', 'android配置', 'fa-circle-o', '', '2', '1489031361', '1489031361', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('99', '98', 'admin', 'System', 'upAppAndroidConfig', '', '1', '0', '更新android配置', 'fa-circle-o', '', '1', '1489031431', '1489031431', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('100', '0', 'admin', 'Tool', 'default', '', '1', '1', '扩展工具', 'fa-cloud', '', '4', '1489476084', '1489547868', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('103', '100', 'admin', 'Slide', 'default', '', '1', '1', '幻灯片', 'fa-circle-o', '', '1', '1489489395', '1489489395', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('104', '103', 'admin', 'Slide', 'index', '', '1', '1', '幻灯片管理', 'fa-circle-o', '', '1', '1489489421', '1489489421', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('105', '103', 'admin', 'SlideCat', 'index', '', '1', '1', '幻灯片分类', 'fa-circle-o', '', '2', '1489489448', '1489489448', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('106', '104', 'admin', 'Slide', 'add', '', '1', '0', '添加幻灯片', 'fa-circle-o', '', '1', '1489546558', '1489546558', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('107', '104', 'admin', 'Slide', 'edit', '', '1', '0', '编辑幻灯片', 'fa-circle-o', '', '2', '1489546580', '1489546580', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('108', '104', 'admin', 'Slide', 'delete', '', '1', '0', '删除幻灯片', 'fa-circle-o', '', '3', '1489546608', '1489546608', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('109', '105', 'admin', 'SlideCat', 'add', '', '1', '0', '添加幻灯片分类', 'fa-circle-o', '', '1', '1489546644', '1489546644', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('110', '105', 'admin', 'SlideCat', 'edit', '', '1', '0', '编辑幻灯片分类', 'fa-circle-o', '', '2', '1489546670', '1489546670', '0', '0');
+INSERT INTO `lmx_menu` VALUES ('111', '105', 'admin', 'SlideCat', 'delete', '', '1', '0', '删除幻灯片分类', 'fa-circle-o', '', '3', '1489546702', '1489546702', '0', '0');
 
 -- ----------------------------
 -- Table structure for lmx_options
@@ -449,6 +448,6 @@ CREATE TABLE `lmx_users` (
 -- ----------------------------
 -- Records of lmx_users
 -- ----------------------------
-INSERT INTO `lmx_users` VALUES ('2', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'admin', 'lmxdawn@gmail.com', 'kk', null, '0', '2000-01-01', null, '127.0.0.1', '1489974938', '1487868050', '', '1', '0', '1', '0', '', null);
+INSERT INTO `lmx_users` VALUES ('2', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'admin', 'lmxdawn@gmail.com', 'kk', null, '0', '2000-01-01', null, '127.0.0.1', '1492659460', '1487868050', '', '1', '0', '1', '0', '', null);
 INSERT INTO `lmx_users` VALUES ('5', 'demo', '6c5ac7b4d3bd3311f033f971196cfa75', 'demo', '862253272@qq.com', '123', null, '1', '2000-01-01', '', '127.0.0.1', '1488169490', '1487966028', '', '1', '0', '1', '0', '', null);
 INSERT INTO `lmx_users` VALUES ('6', 'demo1', '655e9d2a52f932bdde5ba3e0c544a6b9', 'demo1', '', '', null, '0', '2000-01-01', null, null, '0', '1487966314', '', '1', '0', '1', '0', '', null);

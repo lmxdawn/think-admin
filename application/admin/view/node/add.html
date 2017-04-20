@@ -5,179 +5,220 @@
 
 <section class="lmx-larry-box">
 
-    <div class="lmx-wrapper">
+    <!--<div class="lmx-wrapper">-->
 
-        <div class="tab">
+    <!--<div class="tab">-->
 
-            <blockquote class="quote">
-                <ul class="tab-title">
-                    <li class="">
-                        <i class=""></i>
-                        <span><a href="{:Url('index')}">后台菜单</a></span>
-                    </li>
-                    <li class="active">
-                        <i class=""></i>
-                        <span>{$title}</span>
-                    </li>
-                </ul>
-            </blockquote>
+    <!--<blockquote class="quote">-->
+    <!--<ul class="tab-title">-->
+    <!--<li class="">-->
+    <!--<i class=""></i>-->
+    <!--<span><a href="{:Url('index')}">后台菜单</a></span>-->
+    <!--</li>-->
+    <!--<li class="active">-->
+    <!--<i class=""></i>-->
+    <!--<span>{$title}</span>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</blockquote>-->
 
-        </div>
+    <!--</div>-->
 
-        <div class="list">
+    <!--<div class="list">-->
 
-        </div>
+    <!--</div>-->
 
+    <!--</div>-->
+
+    <!--&lt;!&ndash;表格&ndash;&gt;-->
+    <!--<div class="lmx-info">-->
+    <!--<header class="info-header">-->
+    <!--<span class="info-title">{$title}</span>-->
+    <!--</header>-->
+    <div class="info-content">
+        <form class="layui-form" id="theForm" action="">
+            <!--菜单名称-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" value="{$Menu.title ?? ''}" required  lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--上级菜单-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">上级菜单</label>
+                <div class="layui-input-block">
+                    <select name="parent_id" lay-verify="required" autocomplete="off">
+                        <option value="0,顶级">顶级</option>
+                        {volist name='lists' id='vo'}
+                        <option value="{$vo.id}" {if condition="$parent_id eq $vo.id"}selected{/if}>{$vo.title_show}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+
+            <!--应用名称-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">应用名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="app" value="{$Menu.app ?? ''}" required lay-verify="required" placeholder="请输入应用名称" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+
+            <!--控制器-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">控制器名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="model" value="{$Menu.model ?? ''}" required lay-verify="required" placeholder="请输入控制器名称" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+
+            <!--操作名称-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">操作名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="action" value="{$Menu.action ?? ''}" required lay-verify="required" placeholder="请输入操作名称" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+
+            <!--url参数-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">url参数</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="param" value="{$Menu.param ?? ''}" placeholder="请输入url参数" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">id=12&xx=a</div>
+            </div>
+
+            <!--菜单类型-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="type" value="0" title="只作为菜单"  autocomplete="off" {if condition="(empty($Menu.type))"}checked{/if}>
+                    <input type="radio" name="type" value="1" title="权限认证+菜单"  autocomplete="off" {if condition="(!empty($Menu.type) and ($Menu.type eq 1))"}checked{/if} >
+                </div>
+            </div>
+
+            <!--状态-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="status" value="0" title="不显示"  autocomplete="off" {if condition="(empty($Menu.status))"}checked{/if}>
+                    <input type="radio" name="status" value="1" title="显示"  autocomplete="off" {if condition="(!empty($Menu.status) and ($Menu.status eq 1))"}checked{/if}>
+                </div>
+            </div>
+
+            <!--图标-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">图标</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="icon" value="{$Menu.icon ?? 'fa-circle-o'}" placeholder="请输入图标" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    获取地址：<a href="http://fontawesome.dashgame.com/" target="_blank">http://fontawesome.dashgame.com/</a>
+                </div>
+            </div>
+
+            <!--备注-->
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea name="remark" placeholder="请输入内容" class="layui-textarea">{$Menu.remark ?? ''}</textarea>
+                </div>
+            </div>
+
+            <!--排序-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="listorder" value="{$Menu.listorder ?? ''}" placeholder="请输入排序" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+
+            <!--是否开启自动刷新-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">自动刷新</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="is_update" lay-skin="switch" {if condition="(!empty($Menu.is_update))"}checked{/if}>
+                </div>
+                <div class="layui-form-mid layui-word-aux">开启后每次切换页面自动刷新</div>
+            </div>
+
+            <!--提交按钮-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <!--表格-->
-    <div class="lmx-info">
-        <header class="info-header">
-            <span class="info-title">{$title}</span>
-        </header>
-        <div class="info-content">
-            <form class="layui-form" id="theForm" action="">
-                <!--菜单名称-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">菜单名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" value="{$Menu.title ?? ''}" required  lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <!--上级菜单-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">上级菜单</label>
-                    <div class="layui-input-block">
-                        <select name="parent" lay-verify="required" autocomplete="off">
-                            <option value="0,顶级">顶级</option>
-                            {volist name='lists' id='vo'}
-                                <option value="{$vo.id},{$vo.title}" {if condition="$parent_id eq $vo.id"}selected{/if}>{$vo.title_show}</option>
-                            {/volist}
-                        </select>
-                    </div>
-                </div>
-
-                <!--应用名称-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">应用名称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="app" value="{$Menu.app ?? ''}" required lay-verify="required" placeholder="请输入应用名称" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
-                </div>
-
-                <!--控制器-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">控制器名称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="model" value="{$Menu.model ?? ''}" required lay-verify="required" placeholder="请输入控制器名称" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
-                </div>
-
-                <!--操作名称-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">操作名称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="action" value="{$Menu.action ?? ''}" required lay-verify="required" placeholder="请输入操作名称" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
-                </div>
-
-                <!--url参数-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">url参数</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="param" value="{$Menu.param ?? ''}" placeholder="请输入url参数" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">id=12&xx=a</div>
-                </div>
-
-                <!--菜单类型-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">类型</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="type" value="0" title="只作为菜单"  autocomplete="off" {if condition="(empty($Menu.type))"}checked{/if}>
-                        <input type="radio" name="type" value="1" title="权限认证+菜单"  autocomplete="off" {if condition="(!empty($Menu.type) and ($Menu.type eq 1))"}checked{/if} >
-                    </div>
-                </div>
-
-                <!--状态-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">状态</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="status" value="0" title="不显示"  autocomplete="off" {if condition="(empty($Menu.status))"}checked{/if}>
-                        <input type="radio" name="status" value="1" title="显示"  autocomplete="off" {if condition="(!empty($Menu.status) and ($Menu.status eq 1))"}checked{/if}>
-                    </div>
-                </div>
-
-                <!--图标-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">图标</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="icon" value="{$Menu.icon ?? 'fa-circle-o'}" placeholder="请输入图标" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">
-                        获取地址：<a href="http://fontawesome.dashgame.com/" target="_blank">http://fontawesome.dashgame.com/</a>
-                    </div>
-                </div>
-
-                <!--备注-->
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">备注</label>
-                    <div class="layui-input-block">
-                        <textarea name="remark" placeholder="请输入内容" class="layui-textarea">{$Menu.remark ?? ''}</textarea>
-                    </div>
-                </div>
-
-                <!--排序-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">排序</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="listorder" value="{$Menu.listorder ?? ''}" placeholder="请输入排序" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">辅助文字</div>
-                </div>
-
-                <!--是否开启自动刷新-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">自动刷新</label>
-                    <div class="layui-input-block">
-                        <input type="checkbox" name="is_update" lay-skin="switch" {if condition="(!empty($Menu.is_update))"}checked{/if}>
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">开启后每次切换页面自动刷新</div>
-                </div>
-
-                <!--提交按钮-->
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit="" lay-filter="theForm">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!--</div>-->
 
 
 </section>
 
 {/block}
-
-
-<!--JS引用-->
-{block name="js"}
-{__block__}
-    <script src="{:sp_get_asset_static_path()}/modules/admin/node/js/add.js?t={:sp_get_static_version()}"></script>
-
-{/block}
-
 <!--页面JS脚本-->
 {block name="script"}
 {__block__}
-    <script>
-        var NODE_INDEX_URL = "{:Url('index')}";//后台菜单url
-    </script>
+<script>
+    layui.use(['form'], function(){
+
+        var form = layui.form();
+
+        var is_submit = false;
+        //监听提交
+        form.on('submit(theForm)', function(data){
+            var $this = $(this);
+            $this.html('提交中...');
+            if (is_submit){
+                return false;
+            }
+            is_submit = true;
+            $.ajax({
+                type : 'post',
+                url : '',
+                data : data.field,
+                dataType : 'json',
+                success : function (res) {
+                    if (res.code == 1){
+                        $this.html('提交中...');
+                        //询问框
+                        layer.confirm(res.msg + ',是否继续操作？', {
+                            btn: ['确定','取消'] //按钮
+                        }, function(){
+                            //确定
+                            layer.closeAll();
+                            window.location.reload();
+                        },function () {
+                            //取消
+                            layer.closeAll();
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                        });
+                    }else{
+                        //提示层
+                        is_submit = false;
+                        $this.html('立即提交');
+                        layer.msg(res.msg);
+                    }
+                },
+                error : function (e) {
+                    is_submit = false;
+                    $this.html('立即提交');
+                }
+            })
+            return false;
+        });
+
+    })
+
+</script>
 
 
 {/block}

@@ -17,7 +17,7 @@
                     </li>
                     <li class="">
                         <i class=""></i>
-                        <span><a href="{:Url('add')}">添加菜单</a></span>
+                        <span><a class="add" href="{:Url('add')}">添加菜单</a></span>
                     </li>
                 </ul>
             </blockquote>
@@ -30,47 +30,48 @@
 
     </div>
 
-
-
     <!--表格-->
     <div class="lmx-table">
         <table class="layui-table">
             <colgroup>
                 <col width="100">
+                <col width="50">
                 <col width="100">
                 <col width="300">
-                <col width="300">
-                <col width="100">
-                <col width="100">
+                <col width="50">
+                <col width="50">
                 <col width="220">
             </colgroup>
             <thead>
-                <tr>
-                    <th>编号</th>
-                    <th>排序</th>
-                    <th>名称</th>
-                    <th>链接</th>
-                    <th>状态</th>
-                    <th>自动更新</th>
-                    <th>操作</th>
-                </tr>
+            <tr>
+                <th>排序</th>
+                <th>编号</th>
+                <th>应用</th>
+                <th>名称</th>
+                <th>状态</th>
+                <th>自动更新</th>
+                <th>操作</th>
+            </tr>
             </thead>
-            <tbody>
-                {volist name='lists' id='vo'}
-                    <tr>
-                        <td>{$vo.id}</td>
-                        <td>{$vo.listorder}</td>
-                        <td>{$vo.title_show}</td>
-                        <td>{$vo.app}/{$vo.model}/{$vo.action}</td>
-                        <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
-                        <td>{$vo.is_update? '是' : '否'}</td>
-                        <td>
-                            <a class="layui-btn layui-btn-small" href="{:Url('add',['parent_id' => $vo.id])}" title="添加子菜单"><i class="layui-icon">&#xe608;</i></a>
-                            <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
-                            <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
-                        </td>
-                    </tr>
-                {/volist}
+            <tbody id="list">
+            {volist name='lists' id='vo'}
+            <tr class="lmx-tree {if condition='$vo.parent_id'} lmx-tree-hide lmx-tree-parent-{$vo.parent_id}{/if}" data-id="{$vo.id}">
+                <td>
+                    {$vo.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;',###}<i class="lmx-tree-catet fa fa-caret-right"></i>
+                    <input class="lmx-tree-order" name="listorders[{$vo.id}]" size="3" value="{$vo.listorder}" type="text">
+                </td>
+                <td>{$vo.id}</td>
+                <td>{$vo.app}</td>
+                <td>{$vo.title_show}</td>
+                <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
+                <td>{$vo.is_update? '是' : '否'}</td>
+                <td>
+                    <a class="layui-btn layui-btn-small add" href="{:Url('add',['parent_id' => $vo.id])}" title="添加子菜单"><i class="fa fa-plus"></i></a>
+                    <a class="layui-btn layui-btn-small add" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                    <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+                </td>
+            </tr>
+            {/volist}
             </tbody>
         </table>
 
@@ -89,6 +90,48 @@
 
 <script src="{:sp_get_asset_static_path()}/modules/admin/base/js/main.js?t={:sp_get_static_version()}"></script>
 
+
+{/block}
+
+
+
+<!--页面JS脚本-->
+{block name="script"}
+{__block__}
+<script>
+
+    layui.use(['layer'], function(){
+
+        $(".lmx-tree").click(function () {
+
+            var $this = $(this),
+                id = $this.data('id')
+
+            $this.find(".lmx-tree-catet").toggleClass('fa-caret-right').toggleClass("fa-caret-down");
+
+            $(".lmx-tree-parent-" + id).toggleClass('lmx-tree-hide');
+
+        });
+
+        $(".add").click(function () {
+            var $this = $(this)
+                ,url = $this.attr('href')
+            layer.open({
+                type: 2,
+                title: '添加菜单',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['80%', '95%'],
+                content: url //iframe的url
+            });
+
+            return false;
+        })
+
+    });
+
+
+</script>
 
 {/block}
 
