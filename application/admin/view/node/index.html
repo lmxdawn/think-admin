@@ -1,6 +1,16 @@
 {extend name="base" /}
 
 
+
+<!--页面css脚本-->
+{block name="css"}
+{__block__}
+
+<link rel="stylesheet" href="{:sp_get_asset_static_path()}/treeTable/treeTable.css?t={:sp_get_static_version()}">
+
+{/block}
+
+
 {block name="body"}
 
 <section class="lmx-larry-box">
@@ -32,7 +42,7 @@
 
     <!--表格-->
     <div class="lmx-table">
-        <table class="layui-table">
+        <table class="layui-table treeTable" id="tree_table">
             <colgroup>
                 <col width="100">
                 <col width="50">
@@ -53,23 +63,22 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody id="list">
+            <tbody>
             {volist name='lists' id='vo'}
-            <tr class="lmx-tree {if condition='$vo.parent_id'} lmx-tree-hide lmx-tree-parent-{$vo.parent_id}{/if}" data-id="{$vo.id}">
-                <td>
-                    {$vo.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;',###}<i class="lmx-tree-catet fa fa-caret-right"></i>
-                    <input class="lmx-tree-order" name="listorders[{$vo.id}]" size="3" value="{$vo.listorder}" type="text">
-                </td>
-                <td>{$vo.id}</td>
-                <td>{$vo.app}</td>
-                <td>{$vo.title_show}</td>
-                <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
-                <td>{$vo.is_update? '是' : '否'}</td>
-                <td>
-                    <a class="layui-btn layui-btn-small add" href="{:Url('add',['parent_id' => $vo.id])}" title="添加子菜单"><i class="fa fa-plus"></i></a>
-                    <a class="layui-btn layui-btn-small add" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
-                    <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
-                </td>
+            <tr id="node-{$vo.id}" {if condition='$vo.parent_id'}class="child-of-node-{$vo.parent_id}" style="display: none;" {/if} data-id="{$vo.id}">
+            <td style="padding-left:20px;">
+                <input class="lmx-input-order" name="listorders[{$vo.id}]" size="3" value="{$vo.listorder}" type="text">
+            </td>
+            <td>{$vo.id}</td>
+            <td>{$vo.app}</td>
+            <td>{$vo.title_show}</td>
+            <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
+            <td>{$vo.is_update? '是' : '否'}</td>
+            <td>
+                <a class="layui-btn layui-btn-small add" href="{:Url('add',['parent_id' => $vo.id])}" title="添加子菜单"><i class="fa fa-plus"></i></a>
+                <a class="layui-btn layui-btn-small add" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+            </td>
             </tr>
             {/volist}
             </tbody>
@@ -90,6 +99,8 @@
 
 <script src="{:sp_get_asset_static_path()}/modules/admin/base/js/main.js?t={:sp_get_static_version()}"></script>
 
+<script src="{:sp_get_asset_static_path()}/treeTable/treeTable.js?t={:sp_get_static_version()}"></script>
+
 
 {/block}
 
@@ -102,16 +113,7 @@
 
     layui.use(['layer'], function(){
 
-        $(".lmx-tree").click(function () {
-
-            var $this = $(this),
-                id = $this.data('id')
-
-            $this.find(".lmx-tree-catet").toggleClass('fa-caret-right').toggleClass("fa-caret-down");
-
-            $(".lmx-tree-parent-" + id).toggleClass('lmx-tree-hide');
-
-        });
+        $("#tree_table").treeTable({clickableNodeNames:true});
 
         $(".add").click(function () {
             var $this = $(this)

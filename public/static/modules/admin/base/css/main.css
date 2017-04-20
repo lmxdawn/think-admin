@@ -115,11 +115,7 @@
 }
 
 
-/*表格的节点收缩*/
-.lmx-tree{cursor: pointer}
-.lmx-tree-hide{display: none}
-.lmx-tree-catet{font-size: 18px;}
-.lmx-tree-order{
+.lmx-input-order{
     margin-bottom: 0;
     padding: 3px;
     width: 40px;

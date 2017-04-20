@@ -1,0 +1,28 @@
+
+.treeTable tr td .expander {
+  background-position: left center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  padding: 0;
+  zoom: 1; /* IE7 Hack */
+  margin-left: -20px;
+}
+
+.treeTable tr.collapsed td .expander {
+  background-image: url(./images/toggle-expand-dark.png);
+}
+
+.treeTable tr.expanded td .expander {
+  background-image: url(./images/toggle-collapse-dark.png);
+}
+
+/* jquery.treeTable.sortable
+ * ------------------------------------------------------------------------- */
+.treeTable tr.selected, .treeTable tr.accept {
+  background-color: #3875d7;
+  color: #fff;
+}
+.treeTable .ui-draggable-dragging {
+  color: #000;
+  z-index: 1;
+}
