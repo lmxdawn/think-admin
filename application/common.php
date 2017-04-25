@@ -79,9 +79,15 @@ if (!function_exists('sp_get_asset_upload_path')) {
     /**
      * 转化数据库保存的文件路径，为可以访问的url
      * @param string $file
+     * @param string $default 默认返回的地址
      * @return string
      */
-    function sp_get_asset_upload_path($file = ''){
+    function sp_get_asset_upload_path($file = '',$default = ''){
+
+        if ($file == ''){
+            return $default;
+        }
+
         if(strpos($file,"http")===0){
             return $file;
         }else if(strpos($file,"/")===0){
