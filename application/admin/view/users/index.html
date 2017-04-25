@@ -72,20 +72,20 @@
             </thead>
             <tbody>
             {volist name='lists' id='vo'}
-                <tr>
-                    <td>{$vo.id}</td>
-                    <td>{$vo.user_name}</td>
-                    <td>{$vo.user_nicename}</td>
-                    <td>{$vo.avatar}</td>
-                    <td>{$vo.user_email}</td>
-                    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
-                    <td>{$vo.last_login_time|date='Y-m-d H:i:s',###}</td>
-                    <td>{$vo.last_login_ip}</td>
-                    <td>{$vo.user_status}</td>
-                    <td>
-                        <!--<a class="layui-btn layui-btn-small" href="#" data-id="{$vo.id}" onclick="alert('此功能待完善')" >拉黑</a>-->
-                    </td>
-                </tr>
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.user_name}</td>
+                <td>{$vo.user_nicename}</td>
+                <td><img width="100" height="100" src="{$vo.avatar|sp_get_image_preview_url}"></td>
+                <td>{$vo.user_email}</td>
+                <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                <td>{$vo.last_login_time|date='Y-m-d H:i:s',###}</td>
+                <td>{$vo.last_login_ip}</td>
+                <td>{$vo.user_status}</td>
+                <td>
+                    <a class="layui-btn layui-btn-small" href="#" data-id="{$vo.id}" onclick="alert('此功能待完善')" >拉黑</a>
+                </td>
+            </tr>
             {/volist}
             </tbody>
         </table>

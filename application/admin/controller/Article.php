@@ -12,7 +12,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Article as Articlemodel;
-use app\common\model\Category;
+use app\common\model\ArticleCategory;
 use app\common\model\Users;
 use think\Url;
 
@@ -30,9 +30,9 @@ class Article extends Base {
 
         $where = [];
 
-        $category_id = $this->request->get('category_id/d');
-        if (!empty($category_id)){
-            $where['category_id'] = $category_id;
+        $cat_id = $this->request->get('cat_id/d');
+        if (!empty($cat_id)){
+            $where['cat_id'] = $cat_id;
         }
 
         $keywords = $this->request->get('keywords');
@@ -62,13 +62,12 @@ class Article extends Base {
             ->paginate(15);
 
         // 分类列表
-        $category_lists = Category::getTreeCategory();
-
+        $cat_lists = ArticleCategory::getTreeCategory();
         return $this->view->fetch('index',[
             'title' => '文章管理',
             'lists' => $lists,
-            'category_lists' => $category_lists,
-            'category_id' => $category_id,
+            'cat_lists' => $cat_lists,
+            'cat_id' => $cat_id,
             'keywords' => $keywords,
             'start_time' => $start_time,
             'end_time' => $end_time,
@@ -115,13 +114,13 @@ class Article extends Base {
         }else{
 
             //获取分类树形列表
-            $lists = Category::getTreeCategory();
+            $lists = ArticleCategory::getTreeCategory();
 
-            $category_id = $this->request->param('category_id/d');
+            $cat_id = $this->request->param('cat_id/d');
 
             return $this->view->fetch('add',[
                 'title' => '添加文章',
-                'category_id' => $category_id,
+                'cat_id' => $cat_id,
                 'lists' => $lists,
             ]);
 
@@ -141,7 +140,7 @@ class Article extends Base {
         // 分类信息
         $Article = Articlemodel::where($where)
             ->field(
-                ['id','category_id','title','keywords','source','u_date','content','excerpt','status','smeta','hits','istop','recommended']
+                ['id','cat_id','title','keywords','source','u_date','content','excerpt','status','smeta','hits','istop','recommended']
             )
             ->find();
 
@@ -179,16 +178,16 @@ class Article extends Base {
                 $this->error('没有文章信息');
             }
 
-            $category_id = $Article->category_id;
+            $cat_id = $Article->cat_id;
             $Article['smeta'] = json_decode($Article['smeta'],true);
 
             //获取分类树形列表
-            $lists = Category::getTreeCategory();
+            $lists = ArticleCategory::getTreeCategory();
 
             return $this->view->fetch('add',[
                 'title' => '编辑文章',
                 'lists' => $lists,
-                'category_id' => $category_id,
+                'cat_id' => $cat_id,
                 'Article' => $Article,
             ]);
 

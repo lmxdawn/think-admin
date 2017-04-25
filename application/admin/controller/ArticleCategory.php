@@ -11,7 +11,7 @@
 
 namespace app\admin\controller;
 
-use app\common\model\Category as Categorymodel;
+use app\common\model\ArticleCategory as ArticleCategorymodel;
 use think\Url;
 
 
@@ -28,7 +28,7 @@ class Category extends Base {
 
         $where = [];
 
-        $lists = Categorymodel::getTreeCategory($where);
+        $lists = ArticleCategorymodel::getTreeCategory($where);
 
         return $this->view->fetch('index',[
             'title' => '分类管理',
@@ -56,16 +56,16 @@ class Category extends Base {
                 $this->error($result);
             }
 
-            $count = Categorymodel::where(['title' => $data['title']])
+            $count = ArticleCategorymodel::where(['title' => $data['title']])
                 ->count();
             if ($count > 0){
                 $this->error('该分类已经存在');
             }
 
             // 菜单模型
-            $Categorymodel = Categorymodel::getInstance();
+            $ArticleCategorymodel = ArticleCategorymodel::getInstance();
 
-            $result = $Categorymodel->save($data);
+            $result = $ArticleCategorymodel->save($data);
 
             if (empty($result)){
                 $this->error('文章分类添加失败');
@@ -76,7 +76,7 @@ class Category extends Base {
         }else{
 
             //获取树形列表
-            $lists = Categorymodel::getTreeCategory();
+            $lists = ArticleCategorymodel::getTreeCategory();
 
             $pid = $this->request->param('pid/d');
 
@@ -100,7 +100,7 @@ class Category extends Base {
         $id = $this->request->param('id/d');
         $where['id'] = $id;
         // 分类信息
-        $Cate = Categorymodel::where($where)
+        $Cate = ArticleCategorymodel::where($where)
             ->field(
                 ['id','pid','title','status','description','listorder']
             )
@@ -120,7 +120,7 @@ class Category extends Base {
 
             $wh['id'] = ['neq',$id];
             $wh['title'] = $data['title'];
-            $count = Categorymodel::where($wh)
+            $count = ArticleCategorymodel::where($wh)
                 ->count();
             if ($count > 0){
                 $this->error('该分类已经存在');
@@ -129,7 +129,7 @@ class Category extends Base {
             if ($Cate->id == $data['pid']){
                 $this->result([],-1,'不能把自身作为父级菜单','json');
             }
-            $sub_menu = Categorymodel::where(['pid' => $id])->field(['id'])->select();
+            $sub_menu = ArticleCategorymodel::where(['pid' => $id])->field(['id'])->select();
             foreach ($sub_menu as $value){
                 if ($value['id'] == $data['pid']){
                     $this->error('不能把子级作为父级分类');
@@ -154,7 +154,7 @@ class Category extends Base {
             }
 
             //获取树形列表
-            $lists = Categorymodel::getTreeCategory();
+            $lists = ArticleCategorymodel::getTreeCategory();
 
             $pid = $Cate->pid;
 
@@ -176,11 +176,11 @@ class Category extends Base {
                 $this->error('参数错误！');
             }
 
-            $sub_cate = Categorymodel::get(['pid' => $id]);
+            $sub_cate = ArticleCategorymodel::get(['pid' => $id]);
             if ($sub_cate){
                 $this->error('此分类下存在子菜单，不可删除！');
             }
-            if (Categorymodel::destroy($id)){
+            if (ArticleCategorymodel::destroy($id)){
                 $this->success('删除成功！');
             }
 

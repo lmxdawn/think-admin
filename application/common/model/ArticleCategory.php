@@ -15,10 +15,10 @@ use lmxdawn\tree\Tree;
 use think\Model;
 
 /**
- * Class AuthRule 菜单表模型
+ * Class AuthRule 文章分类表模型
  * @package app\index\model
  */
-class Category extends Model
+class ArticleCategory extends Model
 {
 
     // 数据完成时

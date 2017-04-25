@@ -36,10 +36,10 @@
             <div class="layui-form-item"  style="margin-bottom:0px;">
                 <!--分类-->
                 分类：
-                <select name="category_id" style="display: inline;vertical-align: middle;border: 1px solid #ccc;height: 38px;">
+                <select name="cat_id" style="display: inline;vertical-align: middle;border: 1px solid #ccc;height: 38px;">
                     <option value="">请选择</option>
-                    {volist name='category_lists' id='vo'}
-                    <option value="{$vo.id}" {if condition="$category_id eq $vo.id"}selected{/if}>{$vo.title_show}</option>
+                    {volist name='cat_lists' id='vo'}
+                    <option value="{$vo.id}" {if condition="$cat_id eq $vo.id"}selected{/if}>{$vo.title_show}</option>
                     {/volist}
                 </select>
                 时间：

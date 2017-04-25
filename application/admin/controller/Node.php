@@ -176,15 +176,12 @@ class Node extends Base {
                     //数据验证失败
                     $this->result([],40001,$result);
                 }
-
-                if ($authRule){
-                    // 有则修改
-                    $rule_res = $authRule->isUpdate(true)->save($ruleDate);
-                }else{
-                    //没有则增加
-                    $rule_res = AuthRule::getInstance()->save($ruleDate);
+                if (!$authRule){
+                    $authRule = AuthRule::getInstance();
                 }
-
+                $authRule->name = $ruleDate['name'];
+                $authRule->title = $ruleDate['title'];
+                $rule_res = $authRule->save();
 
                 if (false == $rule_res){
                     $this->result([],-1,'菜单添加成功，权限添加失败','json');
