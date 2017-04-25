@@ -54,12 +54,17 @@ class Article extends Base {
             }
             array_push($where['create_time'], ['elt',strtotime($end_time)]);
         }
-
+        $query_data = [
+            'cat_id' => $cat_id,
+            'keywords' => $keywords,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+        ];
         $lists = Articlemodel::where($where)
             ->field(
                 ['id','uid','pid','title','status','comment_count','hits','likes','create_time']
             )
-            ->paginate(15);
+            ->paginate(15,false,['query' => $query_data]);
 
         // 分类列表
         $cat_lists = ArticleCategory::getTreeCategory();

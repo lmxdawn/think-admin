@@ -33,13 +33,13 @@ class Slide extends Base {
         if (!empty($cid)){
             $where['cid'] = $cid;
         }
-
+        $query_data = ['cid' => $cid];
         $lists = Slidemodel::where($where)
             ->field(
                 ['id','name','pic','url','des','status','listorder']
             )
             ->order('listorder ASC')
-            ->paginate(15);
+            ->paginate(15,false,['query' => $query_data]);
 
         //分类列表
         $cat_lists = SlideCat::where(['status' => 1])->field(['id','name'])->select();

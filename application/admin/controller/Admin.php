@@ -47,11 +47,12 @@ class Admin extends Controller {
 
         $fields = ['id','user_name','user_nicename','user_email','avatar','create_time','last_login_time','last_login_ip','user_status'];
         $order = ['id'  =>  'DESC'];
+        $query_data = ['id' => $id,'kwd' => $kwd];
         $lists = Users::where($where)
             ->whereOr($whereOr)
             ->field($fields)
             ->order($order)
-            ->paginate(15);
+            ->paginate(15,false,['query' => $query_data]);
 
         return $this->view->fetch('index',[
             'title' =>  '用户列表',

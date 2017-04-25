@@ -153,7 +153,7 @@ class Rbac extends Base {
             $data = $res['data'];
             foreach ($data as $key=>$v){
                 $menu = Menu::get($v);
-                $rule_name = $menu->app.'/'.$menu->model.'/'.$menu->action;
+                $rule_name = $menu['app'].'/'.$menu['model'].'/'.$menu['action'];
                 $rule_access[$key]['role_id'] = $id;
                 $rule_access[$key]['rule_name'] = $rule_name;
                 $rule_access[$key]['type'] = 'admin';
