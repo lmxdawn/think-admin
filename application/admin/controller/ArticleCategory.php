@@ -19,7 +19,7 @@ use think\Url;
  * Class Auth 文章分类控制器
  * @package app\index\controller
  */
-class Category extends Base {
+class ArticleCategory extends Base {
 
     /**
      *菜单列表
