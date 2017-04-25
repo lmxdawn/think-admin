@@ -154,6 +154,7 @@ class Node extends Base {
                 }
             }
 
+            $tmp_name = $Menu['app'].'/'.$Menu['model'].'/'.$Menu['action'];
 
             $result = $Menu->isUpdate(true)->save($data);
 
@@ -165,7 +166,7 @@ class Node extends Base {
                 $rule_name = $data['app'].'/'.$data["model"].'/'.$data['action'];
 
                 $rule_where = [];
-                $rule_where['name'] = $Menu['app'].'/'.$Menu['model'].'/'.$Menu['action'];
+                $rule_where['name'] = $tmp_name;
                 $authRule = AuthRule::get($rule_where);
                 $ruleDate = [
                     'name'     =>      $rule_name,

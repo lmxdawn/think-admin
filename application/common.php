@@ -11,6 +11,31 @@
 
 // 应用公共文件
 
+if (!function_exists('form_res')) {
+    /**
+     * 格式化数据
+     * @param $code
+     * @param $msg
+     * @param array $data
+     * @param string $error
+     * @return \think\response\Json
+     */
+    function form_res($code = 200, $msg = '', $data = [], $error = 'success')
+    {
+
+        $res = [
+            'code' => $code,
+            'msg' => $msg,
+            'data' => $data,
+            'error' => $error
+        ];
+
+        return json($res);
+    }
+}
+
+
+
 if (!function_exists('sp_get_asset_static_path')) {
     /**
      * 获取静态资源相对路径
@@ -64,6 +89,17 @@ if (!function_exists('sp_get_asset_upload_path')) {
         }
 
         $filepath = config('sys_config.lmx_upload_url').$file;
+
+        if(strpos($filepath,"http")===0){
+            return $filepath;
+        }
+
+        $http =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']!='off') ? 'https://' : 'http://';
+        $host = (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+        $port = $_SERVER["SERVER_PORT"] == 80 ? '' : ':'.$_SERVER["SERVER_PORT"];
+
+        $filepath =  $http.$host.$port.$filepath;
+
         return $filepath;
 
     }
@@ -81,3 +117,4 @@ if (!function_exists('substr')) {
         return mb_substr($string, $start, $length, 'UTF-8');
     }
 }
+
