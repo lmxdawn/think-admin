@@ -49,7 +49,7 @@
                 <label class="layui-form-label">上级菜单</label>
                 <div class="layui-input-block">
                     <select name="parent_id" lay-verify="required" autocomplete="off">
-                        <option value="0,顶级">顶级</option>
+                        <option value="0">顶级</option>
                         {volist name='lists' id='vo'}
                         <option value="{$vo.id}" {if condition="$parent_id eq $vo.id"}selected{/if}>{$vo.title_show}</option>
                         {/volist}
