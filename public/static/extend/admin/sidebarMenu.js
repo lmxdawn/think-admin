@@ -14,6 +14,9 @@ layui.define(function(exports){ //提示：组件也可以依赖其它组件，�
                     return
                 }
                 var closest_a_next = closest_a.next().get(0);
+                if (!closest_a_next){
+                    return
+                }
                 if (!$(closest_a_next).is(":visible")) {
                     var closest_ul = $(closest_a_next.parentNode).closest("ul");
                     closest_ul.find("> .treeview > .treeview-menu").each(function() {
